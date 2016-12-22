@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   keyboard.c                                         :+:      :+:    :+:   */
+/*   object.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mploux <mploux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/16 01:21:39 by mploux            #+#    #+#             */
-/*   Updated: 2016/12/22 20:08:29 by mploux           ###   ########.fr       */
+/*   Created: 2016/12/22 15:42:10 by mploux            #+#    #+#             */
+/*   Updated: 2016/12/22 20:03:21 by mploux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "input.h"
+#include "rt.h"
 
-int			key_hook(int key, t_data *data)
+t_object	object(t_transform trs, int type, t_hit (*intersect)
+												(t_data*, t_object obj, t_ray))
 {
-	if (key == KEY_ESCAPE)
-		exit_rt(data);
-	data->input->key[key] = 1;
-	return (1);
-}
+	t_object object;
 
-int			key_up_hook(int key, t_data *data)
-{
-	data->input->key[key] = 0;
-	return (1);
+	object.pos = trs.pos;
+	object.rot = trs.rot;
+	object.scale = trs.scale;
+	object.type = type;
+	object.intersects[type] = intersect;
+	return (object);
 }

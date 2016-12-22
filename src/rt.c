@@ -6,7 +6,7 @@
 /*   By: mploux <mploux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/18 14:12:44 by mploux            #+#    #+#             */
-/*   Updated: 2016/12/20 18:50:26 by mploux           ###   ########.fr       */
+/*   Updated: 2016/12/22 16:13:01 by mploux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 int		create_rt(t_data *data, const char *name, int width, int height)
 {
 	t_win		*win;
+	t_transform	cam;
 
 	if (!(win = (t_win *)ft_memalloc(sizeof(t_win))))
 		error("malloc error !");
@@ -31,6 +32,8 @@ int		create_rt(t_data *data, const char *name, int width, int height)
 	data->win = win;
 	data->input = new_input();
 	data->framebuffer = new_bitmap(data, width, height);
+	cam = transform(vec3(0, 0, 0), vec3(0, 0, 0), vec3(0, 0, 0));
+	data->camera = new_camera(data, cam, 70.0);
 	return (1);
 }
 

@@ -6,7 +6,7 @@
 #    By: mploux <mploux@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/10 06:04:58 by mploux            #+#    #+#              #
-#    Updated: 2016/12/20 18:52:15 by mploux           ###   ########.fr        #
+#    Updated: 2016/12/22 17:25:22 by mploux           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,17 +20,27 @@ FILES = main.c\
 		inputs/mouse.c\
 		maths/vec2.c\
 		maths/vec3.c\
+		maths/vec3_1.c\
 		maths/vec4.c\
+		maths/transform.c\
+		maths/projection.c\
+		maths/mat4.c\
 		maths/maths.c\
 		graphics/renderer.c\
 		graphics/color.c\
 		graphics/bitmap.c\
 		graphics/screen.c\
-		graphics/line.c
+		graphics/line.c\
+		graphics/ray.c\
+		graphics/hit.c\
+		graphics/camera.c\
+		objects/object.c\
+		objects/sphere.c
 
 REPS = 	maths\
 		inputs\
-		graphics
+		graphics\
+		objects
 
 BIN = bin/
 DIRS = $(addprefix $(BIN),$(REPS))

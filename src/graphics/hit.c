@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   keyboard.c                                         :+:      :+:    :+:   */
+/*   hit.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mploux <mploux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/16 01:21:39 by mploux            #+#    #+#             */
-/*   Updated: 2016/12/22 20:08:29 by mploux           ###   ########.fr       */
+/*   Created: 2016/12/22 17:00:28 by mploux            #+#    #+#             */
+/*   Updated: 2016/12/22 20:17:22 by mploux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "input.h"
+#include "rt.h"
 
-int			key_hook(int key, t_data *data)
+t_hit		hit(t_object *obj, t_vec3 pos, t_vec3 normal, double dist)
 {
-	if (key == KEY_ESCAPE)
-		exit_rt(data);
-	data->input->key[key] = 1;
-	return (1);
-}
+	t_hit result;
 
-int			key_up_hook(int key, t_data *data)
-{
-	data->input->key[key] = 0;
-	return (1);
+	result.obj = obj;
+	result.pos = pos;
+	result.normal = normal;
+	result.dist = dist;
+	return (result);
 }

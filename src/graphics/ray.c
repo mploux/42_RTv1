@@ -1,27 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   keyboard.c                                         :+:      :+:    :+:   */
+/*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mploux <mploux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/16 01:21:39 by mploux            #+#    #+#             */
-/*   Updated: 2016/12/22 20:08:29 by mploux           ###   ########.fr       */
+/*   Created: 2016/12/22 15:58:46 by mploux            #+#    #+#             */
+/*   Updated: 2016/12/22 16:02:25 by mploux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "input.h"
+#include "graphics.h"
 
-int			key_hook(int key, t_data *data)
+t_ray			ray(t_vec3 pos, t_vec3 dir)
 {
-	if (key == KEY_ESCAPE)
-		exit_rt(data);
-	data->input->key[key] = 1;
-	return (1);
-}
+	t_ray	result;
 
-int			key_up_hook(int key, t_data *data)
-{
-	data->input->key[key] = 0;
-	return (1);
+	result.pos = pos;
+	result.dir = dir;
+	return (result);
 }
