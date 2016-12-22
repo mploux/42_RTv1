@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sphere.c                                           :+:      :+:    :+:   */
+/*   plane.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mploux <mploux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/22 15:55:27 by mploux            #+#    #+#             */
-/*   Updated: 2016/12/22 23:00:35 by mploux           ###   ########.fr       */
+/*   Created: 2016/12/22 23:00:41 by mploux            #+#    #+#             */
+/*   Updated: 2016/12/22 23:03:49 by mploux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "maths.h"
 #include "rt.h"
 
-t_object		sphere(t_vec3 pos, double radius)
+t_object		plane(t_vec3 pos, double radius)
 {
 	t_object	result;
 	t_transform	trs;
 
 	trs = transform(pos, vec3(0, 0, 0), vec3(radius, radius, radius));
-	result = object(trs, SPHERE, &intersect_sphere);
+	result = object(trs, PLANE, &intersect_plane);
 	return (result);
 }
 
@@ -50,7 +50,7 @@ static double	intersect_dist(t_object obj, t_ray ray)
 	return (0);
 }
 
-t_hit			intersect_sphere(t_data *data, t_object obj, t_ray ray)
+t_hit			intersect_plane(t_data *data, t_object obj, t_ray ray)
 {
 	t_hit	result;
 

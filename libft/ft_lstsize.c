@@ -1,32 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   screen.c                                           :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mploux <mploux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/20 18:47:43 by mploux            #+#    #+#             */
-/*   Updated: 2016/12/22 21:29:30 by mploux           ###   ########.fr       */
+/*   Created: 2016/12/22 20:45:56 by mploux            #+#    #+#             */
+/*   Updated: 2016/12/22 20:46:33 by mploux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rt.h"
-#include "graphics.h"
+#include "libft.h"
 
-void		draw_screen(t_data *data)
+int			ft_lstsize(t_list *lst)
 {
-	int			x;
-	int			y;
-	t_ray		ray;
+	int		i;
+	t_list	*tmp;
 
-	y = -1;
-	while (++y < data->win->h)
+	i = 0;
+	tmp = lst;
+	while (tmp)
 	{
-		x = -1;
-		while (++x < data->win->w)
-		{
-			ray = cam_ray(data, (double)x, (double)y);
-			draw_scene(data, ray, vec2(x, y), 0);
-		}
+		tmp = tmp->next;
+		i++;
 	}
+	return (i);
 }

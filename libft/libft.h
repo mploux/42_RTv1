@@ -6,7 +6,7 @@
 /*   By: mploux <mploux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/07 17:37:53 by mploux            #+#    #+#             */
-/*   Updated: 2016/12/12 17:13:38 by mploux           ###   ########.fr       */
+/*   Updated: 2016/12/22 20:46:55 by mploux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ int				get_next_line(const int fd, char **line);
 void			ft_swap(void *a, void *b, size_t size);
 t_list			*ft_lstget(t_list *lst, int index);
 void			ft_lstclear(t_list **list);
+int				ft_lstsize(t_list *lst);
 int				ft_ishex(char *str);
 int				ft_iterative_power(int nb, int power);
 int				ft_htoi(char *hex);

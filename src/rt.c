@@ -6,7 +6,7 @@
 /*   By: mploux <mploux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/18 14:12:44 by mploux            #+#    #+#             */
-/*   Updated: 2016/12/22 16:13:01 by mploux           ###   ########.fr       */
+/*   Updated: 2016/12/22 22:36:50 by mploux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,10 @@ int		create_rt(t_data *data, const char *name, int width, int height)
 	data->win = win;
 	data->input = new_input();
 	data->framebuffer = new_bitmap(data, width, height);
+	data->zbuffer = new_zbuffer(width, height);
 	cam = transform(vec3(0, 0, 0), vec3(0, 0, 0), vec3(0, 0, 0));
 	data->camera = new_camera(data, cam, 70.0);
+	data->scene = new_scene();
 	return (1);
 }
 
@@ -52,11 +54,13 @@ int		loop(t_data *data)
 																		0, 0);
 	draw_debug(data);
 	clear_bitmap(data->framebuffer);
+	clear_zbuffer(data, 10000);
 	return (1);
 }
 
 void	loop_rt(t_data *data)
 {
+	manage_scene(data);
 	mlx_hook(data->win->ctx, 2, (1L << 0), &key_hook, data);
 	mlx_hook(data->win->ctx, 3, (1L << 1), &key_up_hook, data);
 	mlx_hook(data->win->ctx, 6, (1L << 6), &mouse_pos_hook, data);

@@ -6,7 +6,7 @@
 /*   By: mploux <mploux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/22 15:42:10 by mploux            #+#    #+#             */
-/*   Updated: 2016/12/22 20:03:21 by mploux           ###   ########.fr       */
+/*   Updated: 2016/12/22 22:58:39 by mploux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,6 @@ t_object	object(t_transform trs, int type, t_hit (*intersect)
 	object.rot = trs.rot;
 	object.scale = trs.scale;
 	object.type = type;
-	object.intersects[type] = intersect;
+	object.intersect = intersect;
 	return (object);
 }
