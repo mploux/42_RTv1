@@ -6,7 +6,7 @@
 /*   By: mploux <mploux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/18 16:57:52 by mploux            #+#    #+#             */
-/*   Updated: 2016/12/22 17:22:22 by mploux           ###   ########.fr       */
+/*   Updated: 2016/12/23 18:48:16 by mploux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,7 @@ void			clear_bitmap(t_bitmap *b);
 int				col_lerp(int a, int b, double n);
 int				color(int r, int g, int b);
 int				color_angle(int angle, int sat);
+int				to_color(t_vec3 v);
+t_vec3			color_to_vec3(int color);
 
 #endif

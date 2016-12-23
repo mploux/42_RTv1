@@ -6,7 +6,7 @@
 #    By: mploux <mploux@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/10 06:04:58 by mploux            #+#    #+#              #
-#    Updated: 2016/12/22 23:02:37 by mploux           ###   ########.fr        #
+#    Updated: 2016/12/23 19:07:44 by mploux           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,7 @@ FILES = main.c\
 		graphics/zbuffer.c\
 		objects/object.c\
 		objects/plane.c\
+		objects/cylindre.c\
 		objects/sphere.c
 
 REPS = 	maths\

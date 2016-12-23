@@ -6,7 +6,7 @@
 /*   By: mploux <mploux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/18 14:10:33 by mploux            #+#    #+#             */
-/*   Updated: 2016/12/22 23:02:00 by mploux           ###   ########.fr       */
+/*   Updated: 2016/12/23 19:07:32 by mploux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ typedef struct	s_object
 	t_vec3		pos;
 	t_vec3		rot;
 	t_vec3		scale;
-	int			type;
+	t_vec3		color;
 	t_hit		(*intersect)(t_data*, struct s_object, t_ray);
 }				t_object;
 
@@ -99,10 +99,12 @@ typedef struct	s_data
 	t_scene		*scene;
 }				t_data;
 
-t_object		sphere(t_vec3 pos, double radius);
+t_object		sphere(int color, t_vec3 pos, double radius);
 t_hit			intersect_sphere(t_data *data, t_object obj, t_ray ray);
-t_object		plane(t_vec3 pos, double radius);
+t_object		plane(int color, t_vec3 pos, double radius);
 t_hit			intersect_plane(t_data *data, t_object obj, t_ray ray);
+t_object		cylindre(int color, t_vec3 pos, t_vec3 rot);
+t_hit			intersect_cylindre(t_data *data, t_object obj, t_ray ray);
 
 int				error(char *error);
 int				create_rt(t_data *data, const char *name, int width,

@@ -6,57 +6,43 @@
 /*   By: mploux <mploux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/22 23:00:41 by mploux            #+#    #+#             */
-/*   Updated: 2016/12/22 23:03:49 by mploux           ###   ########.fr       */
+/*   Updated: 2016/12/23 18:05:44 by mploux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "maths.h"
 #include "rt.h"
 
-t_object		plane(t_vec3 pos, double radius)
+t_object		plane(int color, t_vec3 dir, double dist)
 {
 	t_object	result;
 	t_transform	trs;
 
-	trs = transform(pos, vec3(0, 0, 0), vec3(radius, radius, radius));
-	result = object(trs, PLANE, &intersect_plane);
+	trs = transform(vec3_mul_d(dir, dist), dir, vec3(1, 1, 1));
+	result = object(trs, color, &intersect_plane);
 	return (result);
-}
-
-static double	intersect_dist(t_object obj, t_ray ray)
-{
-	double	abc[3];
-	double	delta;
-	t_vec3	diff;
-	double	p[2];
-
-	diff = vec3_sub(ray.pos, obj.pos);
-	abc[0] = 1;
-	abc[1] = 2 * vec3_dot(ray.dir, diff);
-	abc[2] = vec3_dot(diff, diff) - obj.scale.x * obj.scale.x;
-	delta = abc[1] * abc[1] - 4 * abc[0] * abc[2];
-	if (delta < 0)
-		return (0);
-	else if (delta == 0)
-		return (-(2 * abc[0]) / abc[1]);
-	else
-	{
-		p[0] = (-abc[1] + sqrt(delta)) / (2.0 * abc[0]);
-		p[1] = (-abc[1] - sqrt(delta)) / (2.0 * abc[0]);
-		if (p[0] > p[1])
-			p[0] = p[1];
-		return (p[0]);
-	}
-	return (0);
 }
 
 t_hit			intersect_plane(t_data *data, t_object obj, t_ray ray)
 {
 	t_hit	result;
+	double	numer;
+	double	denom;
+	double	dist;
 
 	(void) data;
-	result.dist = intersect_dist(obj, ray);
-	result.pos = vec3_add(ray.pos, vec3_mul_d(ray.dir, result.dist));
-	result.normal = vec3_normalize(vec3_sub(result.pos, obj.pos));
+	result.dist = 0;
+	denom = vec3_dot(ray.dir, obj.rot);
+	if (denom > 0.01)
+	{
+		numer = vec3_dot(vec3_sub(obj.pos, ray.pos), obj.rot);
+		dist = numer / denom;
+		if (dist >= 0)
+		{
+			result.normal = vec3_mul_d(vec3_normalize(obj.rot), -1);
+			result.dist = dist;
+			result.pos = vec3_add(ray.pos, vec3_mul_d(ray.dir, dist));
+		}
+	}
 	return (result);
 }

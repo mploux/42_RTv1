@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sphere.c                                           :+:      :+:    :+:   */
+/*   cylindre.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mploux <mploux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/22 15:55:27 by mploux            #+#    #+#             */
-/*   Updated: 2016/12/23 17:17:19 by mploux           ###   ########.fr       */
+/*   Created: 2016/12/22 23:00:41 by mploux            #+#    #+#             */
+/*   Updated: 2016/12/23 20:25:59 by mploux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "maths.h"
 #include "rt.h"
 
-t_object		sphere(int color, t_vec3 pos, double radius)
+t_object		cylindre(int color, t_vec3 pos, t_vec3 rot)
 {
 	t_object	result;
 	t_transform	trs;
 
-	trs = transform(pos, vec3(0, 0, 0), vec3(radius, radius, radius));
-	result = object(trs, color, &intersect_sphere);
+	trs = transform(pos, rot, vec3(1, 1, 1));
+	result = object(trs, color, &intersect_cylindre);
 	return (result);
 }
 
@@ -31,9 +31,9 @@ static double	intersect_dist(t_object obj, t_ray ray)
 	double	p[2];
 
 	diff = vec3_sub(ray.pos, obj.pos);
-	abc[0] = 1;
-	abc[1] = 2 * vec3_dot(ray.dir, diff);
-	abc[2] = vec3_dot(diff, diff) - obj.scale.x * obj.scale.x;
+	abc[0] = ray.dir.x * ray.dir.x + ray.dir.z * ray.dir.z;
+	abc[1] = 2 * ray.pos.x * ray.dir.x + 2 * ray.pos.z * ray.dir.z;
+	abc[2] = ray.pos.x * ray.pos.x + ray.pos.z * ray.pos.z - 1;
 	delta = abc[1] * abc[1] - 4 * abc[0] * abc[2];
 	if (delta < 0)
 		return (0);
@@ -50,7 +50,7 @@ static double	intersect_dist(t_object obj, t_ray ray)
 	return (0);
 }
 
-t_hit			intersect_sphere(t_data *data, t_object obj, t_ray ray)
+t_hit			intersect_cylindre(t_data *data, t_object obj, t_ray ray)
 {
 	t_hit	result;
 

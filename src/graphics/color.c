@@ -6,7 +6,7 @@
 /*   By: mploux <mploux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/03 22:23:22 by mploux            #+#    #+#             */
-/*   Updated: 2016/12/15 20:08:41 by mploux           ###   ########.fr       */
+/*   Updated: 2016/12/23 18:52:17 by mploux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,19 @@ int		color_angle(int angle, int sat)
 int		color(int r, int g, int b)
 {
 	return (r << 16 | g << 8 | b);
+}
+
+int		to_color(t_vec3 v)
+{
+	return ((int)v.x << 16 | (int)v.y << 8 | (int)v.z);
+}
+
+t_vec3	color_to_vec3(int color)
+{
+	t_vec3 r;
+
+	r.x = (int)((color & 0xff0000) >> 16);
+	r.y = (int)((color & 0xff00) >> 8);
+	r.z = (int)((color & 0xff));
+	return (r);
 }
