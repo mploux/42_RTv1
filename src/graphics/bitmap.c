@@ -25,6 +25,7 @@ t_bitmap		*new_bitmap(t_data *data, int width, int height)
 	b->height = height;
 	b->pixels = mlx_get_data_addr(b->ctx, &b->bpp, &b->sl, &b->endian);
 	b->bpp /= 8;
+	b->endian = 1;
 	return (b);
 }
 

@@ -6,7 +6,7 @@
 /*   By: mploux <mploux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/18 14:10:33 by mploux            #+#    #+#             */
-/*   Updated: 2016/12/23 19:07:32 by mploux           ###   ########.fr       */
+/*   Updated: 2016/12/24 18:41:42 by mploux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@
 # define CONE 2
 # define CYLINDRE 3
 
+typedef	unsigned int 		s_uint;
+
+# include <SDL2/SDL.h>
 # include <stdlib.h>
 # include <string.h>
 # include "input.h"
@@ -35,7 +38,7 @@ typedef struct s_input		t_input;
 
 typedef struct	s_win
 {
-	void		*ctx;
+	// void		*ctx;
 	int			w;
 	int			h;
 	char		*name;
@@ -90,7 +93,9 @@ typedef struct	s_scene
 
 typedef struct	s_data
 {
-	void		*mlx;
+	SDL_Window	*sdl_win;
+	SDL_Surface	*sdl_surface;
+	// void		*mlx;
 	t_win		*win;
 	t_input		*input;
 	t_bitmap	*framebuffer;
@@ -106,6 +111,9 @@ t_hit			intersect_plane(t_data *data, t_object obj, t_ray ray);
 t_object		cylindre(int color, t_vec3 pos, t_vec3 rot);
 t_hit			intersect_cylindre(t_data *data, t_object obj, t_ray ray);
 
+void			new_sdl_display(t_data *data, const char *name, int width,
+																	int height);
+void			sdl_loop(t_data *data, int (*loop)(t_data *));
 int				error(char *error);
 int				create_rt(t_data *data, const char *name, int width,
 																	int height);

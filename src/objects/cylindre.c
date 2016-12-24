@@ -27,10 +27,11 @@ static double	intersect_dist(t_object obj, t_ray ray)
 {
 	double	abc[3];
 	double	delta;
-	t_vec3	diff;
+//	t_vec3	diff;
 	double	p[2];
 
-	diff = vec3_sub(ray.pos, obj.pos);
+	(void) obj;
+//	diff = vec3_sub(ray.pos, obj.pos);
 	abc[0] = ray.dir.x * ray.dir.x + ray.dir.z * ray.dir.z;
 	abc[1] = 2 * ray.pos.x * ray.dir.x + 2 * ray.pos.z * ray.dir.z;
 	abc[2] = ray.pos.x * ray.pos.x + ray.pos.z * ray.pos.z - 1;

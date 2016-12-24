@@ -6,7 +6,7 @@
 /*   By: mploux <mploux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/18 16:57:52 by mploux            #+#    #+#             */
-/*   Updated: 2016/12/23 18:48:16 by mploux           ###   ########.fr       */
+/*   Updated: 2016/12/24 19:10:22 by mploux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,11 @@ typedef struct	s_bitmap
 {
 	t_data		*data;
 	void		*ctx;
+	SDL_Renderer	*sdl_renderer;
+	SDL_Texture		*sdl_texture;
 	int			width;
 	int			height;
-	char		*pixels;
+	int			*pixels;
 	int			bpp;
 	int			sl;
 	int			endian;
@@ -38,6 +40,7 @@ void			draw_line_x(t_data *data, t_vec2 a, t_vec2 b, t_vec2 colors);
 void			draw_line_y(t_data *data, t_vec2 a, t_vec2 b, t_vec2 colors);
 t_bitmap		*new_bitmap(t_data *data, int width, int height);
 void			bitmap_draw_pix(t_bitmap *b, int x, int y, int color);
+void			bitmap_update(t_bitmap *b);
 void			clear_bitmap(t_bitmap *b);
 int				col_lerp(int a, int b, double n);
 int				color(int r, int g, int b);
