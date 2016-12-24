@@ -6,7 +6,7 @@
 /*   By: mploux <mploux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/18 14:12:44 by mploux            #+#    #+#             */
-/*   Updated: 2016/12/24 18:10:05 by mploux           ###   ########.fr       */
+/*   Updated: 2016/12/24 23:38:38 by mploux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,6 @@
 #include "maths.h"
 #include "graphics.h"
 #include <stdlib.h>
-
-int		create_sdl_rt(t_data *data, const char *name, int width, int height)
-{
-	t_win		*win;
-	t_transform	cam;
-
-	if (!(win = (t_win *)ft_memalloc(sizeof(t_win))))
-		error("malloc error !");
-	if (!(data->mlx = mlx_init()))
-		error("mlx error: mlx failed to load !");
-	win->w = width;
-	win->h = height;
-	win->name = (char *)name;
-	if (!(win->ctx = mlx_new_window(data->mlx, win->w, win->h, win->name)))
-		error("mlx error: win failed to load !");
-	data->win = win;
-	data->input = new_input();
-	data->framebuffer = new_bitmap(data, width, height);
-	data->zbuffer = new_zbuffer(width, height);
-	cam = transform(vec3(0, 0, 0), vec3(0, 0, 0), vec3(0, 0, 0));
-	data->camera = new_camera(data, cam, 70.0);
-	data->scene = new_scene();
-	return (1);
-}
 
 int		create_rt(t_data *data, const char *name, int width, int height)
 {

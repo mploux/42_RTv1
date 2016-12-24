@@ -6,7 +6,7 @@
 /*   By: mploux <mploux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/22 20:35:21 by mploux            #+#    #+#             */
-/*   Updated: 2016/12/23 20:20:34 by mploux           ###   ########.fr       */
+/*   Updated: 2016/12/24 23:40:16 by mploux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,33 +49,23 @@ void		add_object(t_scene *scene, t_object obj)
 	ft_lstadd(&scene->objects, new);
 }
 
-static void	draw_object(t_data *data, t_object object, t_ray ray, t_vec2 pix)
+static int	draw_ray(t_data *data, t_ray ray, t_hit hit)
 {
-	t_hit	hit;
-	double	light_intensity;
-	t_vec3	final_color;
+	t_object	object;
+	double		light_intensity;
+	t_vec3		final_color;
 
-	hit = object.intersect(data, object, ray);
-	if (hit.dist > 0 && hit.dist <= get_depth(data, pix.x, pix.y))
-	{
-		light_intensity = clamp(vec3_dot(hit.normal, vec3_normalize(vec3_sub(vec3(3, -1, -5), hit.pos))), 0, 1);
-		final_color = vec3_mul_d(object.color, light_intensity);
-		draw_depth(data, (int)pix.x, (int)pix.y, hit.dist);
-		draw_pix(data, (int)pix.x, (int)pix.y, to_color(final_color));
-	}
+	object = *((t_object *)hit.obj);
+	light_intensity = clamp(vec3_dot(hit.normal, vec3_normalize(vec3_sub(vec3(3, -1, -5), hit.pos))), 0, 1);
+	final_color = vec3_mul_d(object.color, light_intensity);
+	return (to_color(final_color));
 }
 
 void		draw_scene(t_data *data, t_ray ray, t_vec2 pix, int iteration)
 {
-	t_list		*list;
-	t_object	object;
+	t_hit	hit;
 
-	list = data->scene->objects;
-	iteration++;
-	while (list)
-	{
-		object = *((t_object *)list->content);
-		draw_object(data, object, ray, pix);
-		list = list->next;
-	}
+	hit = throw_ray(data, ray);
+	if (hit.dist > 0)
+		draw_pix(data, pix.x, pix.y, draw_ray(data, ray, hit));
 }

@@ -6,7 +6,7 @@
 /*   By: mploux <mploux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/18 14:10:33 by mploux            #+#    #+#             */
-/*   Updated: 2016/12/24 18:41:42 by mploux           ###   ########.fr       */
+/*   Updated: 2016/12/24 21:20:32 by mploux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,8 @@ t_camera		*new_camera(t_data *data, t_transform trs, double fov);
 t_object		object(t_transform trs, int type, t_hit (*intersect)
 													(t_data*, t_object, t_ray));
 t_ray			ray(t_vec3 pos, t_vec3 dir);
+t_hit			throw_ray(t_data *data, t_ray ray);
+t_hit			hit(t_object *obj, t_vec3 pos, t_vec3 normal, double dis);
 t_ray			cam_ray(t_data *data, double x, double y);
 t_hit			hit(t_object *obj, t_vec3 pos, t_vec3 normal, double dist);
 t_scene			*new_scene();

@@ -6,7 +6,7 @@
 /*   By: mploux <mploux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/24 17:50:10 by mploux            #+#    #+#             */
-/*   Updated: 2016/12/24 20:08:15 by mploux           ###   ########.fr       */
+/*   Updated: 2016/12/24 21:29:26 by mploux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void		new_sdl_display(t_data *data, const char *title, int width, int height)
 
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 		error("sdl error: unable to initialize sdl !");
-	data->sdl_win = SDL_CreateWindow("SDL RTv1 !", SDL_WINDOWPOS_CENTERED,
+	data->sdl_win = SDL_CreateWindow("SDL RTv1 ! COMPILE AVEC LA MINILIBX SINON -42 !!", SDL_WINDOWPOS_CENTERED,
 											SDL_WINDOWPOS_CENTERED,
 											width,
 											height,

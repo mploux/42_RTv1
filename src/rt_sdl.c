@@ -6,7 +6,7 @@
 /*   By: mploux <mploux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/18 14:12:44 by mploux            #+#    #+#             */
-/*   Updated: 2016/12/24 20:08:26 by mploux           ###   ########.fr       */
+/*   Updated: 2016/12/24 23:38:48 by mploux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ int		loop(t_data *data)
 	draw_debug(data);
 	bitmap_update(data->framebuffer);
 	clear_bitmap(data->framebuffer);
-	clear_zbuffer(data, 10000);
 	return (1);
 }
 

@@ -6,7 +6,7 @@
 #    By: mploux <mploux@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/10 06:04:58 by mploux            #+#    #+#              #
-#    Updated: 2016/12/24 18:19:32 by mploux           ###   ########.fr        #
+#    Updated: 2016/12/24 20:45:12 by mploux           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,8 @@ FILES = main.c\
 		rt_sdl.c\
 		error.c\
 		scene.c\
+		ray.c\
+		hit.c\
 		inputs/input.c\
 		inputs/keyboard.c\
 		inputs/mouse.c\
@@ -33,8 +35,6 @@ FILES = main.c\
 		graphics/bitmap_sdl.c\
 		graphics/screen.c\
 		graphics/line.c\
-		graphics/ray.c\
-		graphics/hit.c\
 		graphics/camera.c\
 		graphics/zbuffer.c\
 		objects/object.c\
