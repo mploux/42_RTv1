@@ -15,6 +15,10 @@
 
 void	draw_text(t_data *data, t_vec2 pos, int color, char *string)
 {
+	(void) data;
+	(void) pos;
+	(void) color;
+	(void) string;
 	// mlx_string_put(data->mlx, data->win->ctx, pos.x + 1, pos.y + 2, 0, string);
 	// mlx_string_put(data->mlx, data->win->ctx, pos.x, pos.y, color, string);
 }

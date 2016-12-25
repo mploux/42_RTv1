@@ -62,6 +62,8 @@ t_vec3			vec3_sub(t_vec3 a, t_vec3 b);
 double			vec3_dot(t_vec3 a, t_vec3 b);
 double			vec3_mag(t_vec3 a);
 t_vec3			vec3_mul_d(t_vec3 a, double d);
+t_vec3			vec3_mul(t_vec3 a, t_vec3 b);
+t_vec3			vec3_clamp(t_vec3 v, double min, double max);
 t_vec3			mat4_mul_vec3(t_mat4 a, t_vec3 b);
 t_vec4			vec4(double x, double y, double z, double w);
 t_vec4			vec2_2(t_vec2 a, t_vec2 b);

@@ -18,6 +18,7 @@ FILES = main.c\
 		scene.c\
 		ray.c\
 		hit.c\
+		light.c\
 		inputs/input.c\
 		inputs/keyboard.c\
 		inputs/mouse.c\
@@ -52,11 +53,11 @@ DIRS = $(addprefix $(BIN),$(REPS))
 SRC = $(addprefix src/,$(FILES))
 OBJ = $(addprefix $(BIN),$(FILES:.c=.o))
 
-INCLUDES = -I includes/ -I libmlx-x11/ -I libft/
-LIBS = -L libmlx-x11/ -L libft/
+INCLUDES = -I includes/ -I libft/
+LIBS = -L libft/
 
-CFLAGS = -lmlx -lXext -lX11 -lft -lm -lSDL2
-FLAGS = -g -Wall -Wextra -O2 -march=native -Ofast
+CFLAGS = -lXext -lX11 -lft -lm -lSDL2
+FLAGS = -Wall -Wextra -O2 -march=native -Ofast
 
 .PHONY: all clean fclean re
 
@@ -64,7 +65,6 @@ all: $(NAME)
 
 $(NAME): $(BIN) $(OBJ)
 	@make -C libft/
-	@make -C libmlx-x11/
 	$(CC) $(FLAGS) -o $(NAME) $(OBJ) $(INCLUDES) $(LIBS) $(CFLAGS)
 
 $(BIN):

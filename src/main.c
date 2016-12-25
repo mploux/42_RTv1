@@ -23,7 +23,7 @@ int		main(int ac, char **av)
 	(void) ac;
 	if (!(data = (t_data *)ft_memalloc(sizeof(t_data))))
 		error("malloc error !");
-	create_rt(data, "RTv1 !", 1280, 720);
+	create_rt(data, "RTv1 !", 720, 480);
 	loop_rt(data);
 	return (0);
 }

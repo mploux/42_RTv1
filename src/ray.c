@@ -10,9 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "rt.h"
 #include "graphics.h"
 
-t_ray			ray(t_vec3 pos, t_vec3 dir)
+t_ray			nray(t_vec3 pos, t_vec3 dir)
 {
 	t_ray	result;
 

@@ -24,7 +24,7 @@ typedef	unsigned int 		s_uint;
 # include <stdlib.h>
 # include <string.h>
 # include "input.h"
-# include "mlx.h"
+//# include "mlx.h"
 # include "libft.h"
 # include "maths.h"
 # include "graphics.h"
@@ -43,6 +43,12 @@ typedef struct	s_win
 	int			h;
 	char		*name;
 }				t_win;
+
+typedef struct	s_light
+{
+	t_vec3		pos;
+	t_vec3		color;
+}				t_light;
 
 typedef struct	s_ray
 {
@@ -88,7 +94,7 @@ typedef struct	s_camera
 typedef struct	s_scene
 {
 	t_list		*objects;
-	int			size;
+	t_list		*lights;
 }				t_scene;
 
 typedef struct	s_data
@@ -111,6 +117,10 @@ t_hit			intersect_plane(t_data *data, t_object obj, t_ray ray);
 t_object		cylindre(int color, t_vec3 pos, t_vec3 rot);
 t_hit			intersect_cylindre(t_data *data, t_object obj, t_ray ray);
 
+t_light			light(int color, t_vec3 pos);
+t_vec3			calc_light(t_data *data, t_light light, t_hit hit);
+t_vec3			calc_lights(t_data *data, t_hit hit);
+
 void			new_sdl_display(t_data *data, const char *name, int width,
 																	int height);
 void			sdl_loop(t_data *data, int (*loop)(t_data *));
@@ -122,7 +132,7 @@ void			exit_rt(t_data *data);
 t_camera		*new_camera(t_data *data, t_transform trs, double fov);
 t_object		object(t_transform trs, int type, t_hit (*intersect)
 													(t_data*, t_object, t_ray));
-t_ray			ray(t_vec3 pos, t_vec3 dir);
+t_ray			nray(t_vec3 pos, t_vec3 dir);
 t_hit			throw_ray(t_data *data, t_ray ray);
 t_hit			hit(t_object *obj, t_vec3 pos, t_vec3 normal, double dis);
 t_ray			cam_ray(t_data *data, double x, double y);
@@ -130,7 +140,8 @@ t_hit			hit(t_object *obj, t_vec3 pos, t_vec3 normal, double dist);
 t_scene			*new_scene();
 void			manage_scene(t_data *data);
 void			add_object(t_scene *scene, t_object obj);
-void			draw_scene(t_data *data, t_ray ray, t_vec2 pix, int iteration);
+void			add_light(t_scene *scene, t_light light);
+void			draw_scene(t_data *data, t_ray ray, t_vec2 pix);
 double			*new_zbuffer(int width, int height);
 void			clear_zbuffer(t_data *data, double z_far);
 void			draw_depth(t_data *data, int x, int y, double depth);

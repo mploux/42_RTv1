@@ -15,8 +15,6 @@
 
 void		new_sdl_display(t_data *data, const char *title, int width, int height)
 {
-	SDL_Window *win;
-
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 		error("sdl error: unable to initialize sdl !");
 	data->sdl_win = SDL_CreateWindow("SDL RTv1 ! COMPILE AVEC LA MINILIBX SINON -42 !!", SDL_WINDOWPOS_CENTERED,

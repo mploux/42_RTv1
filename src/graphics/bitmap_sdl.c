@@ -43,16 +43,14 @@ void			bitmap_update(t_bitmap *b)
 
 void			clear_bitmap(t_bitmap *b)
 {
-	// int x;
-	// int y;
-	//
-	// y = -1;
-	// while (++y < b->height)
-	// {
-	// 	x = -1;
-	// 	while (++x < b->width)
-	// 	{
-	// 		bitmap_draw_pix(b, x, y, 0);
-	// 	}
-	// }
+	int x;
+	int y;
+	
+	y = -1;
+	while (++y < b->height)
+	{
+	 	x = -1;
+	 	while (++x < b->width)
+	 		bitmap_draw_pix(b, x, y, 0);
+	}
 }
