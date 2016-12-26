@@ -79,7 +79,8 @@ t_mat4		mat4_rotate_xyz(double rx, double ry, double rz)
 	z.m[0] = cos(DTR(rz));
 	z.m[1] = -sin(DTR(rz));
 	z.m[4] = sin(DTR(rz));
-	return (mat4_mul(x, mat4_mul(y, z)));
+	z.m[5] = cos(DTR(rz));
+	return (mat4_mul(z, mat4_mul(y, x)));
 }
 
 t_mat4		mat4_scale(t_vec3 v)

@@ -34,6 +34,7 @@ t_ray		cam_ray(t_data *data, double x, double y)
 	t_ray	result;
 	t_vec3	scr;
 	t_vec3	dir;
+	t_vec3	rot;
 
 	scr.x = x / data->win->w * 2 - 1;
 	scr.y = y / data->win->h * -2 + 1;
@@ -41,6 +42,8 @@ t_ray		cam_ray(t_data *data, double x, double y)
 	dir.x = scr.x * data->camera->aspect * fov;
 	dir.y = scr.y * fov;
 	dir.z = -1;
+	rot = data->camera->rot;
+	dir = mat4_mul_vec3(mat4_rotate_xyz(rot.x, rot.y, rot.z), dir);
 	result.pos = data->camera->pos;
 	result.dir = vec3_normalize(dir);
 	return (result);

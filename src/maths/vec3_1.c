@@ -52,8 +52,3 @@ t_vec3		vec3_reflect(t_vec3 dir, t_vec3 normal)
 	result = vec3_sub(dir, vec3_mul_d(normal, dot * 2.0));
 	return (result);
 }
-
-/*
-	public Vec3 reflect(Vec3 normal) {
-		return sub(normal.copy().mul(dot(normal) * 2.0f));
-}*/

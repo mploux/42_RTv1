@@ -21,7 +21,7 @@ t_light	light(int color, t_vec3 pos)
 	return (light);
 }
 
-int		shadow(t_data *data, t_light light, t_hit hit)
+int		calc_shadow(t_data *data, t_light light, t_hit hit)
 {
 	double	shadow_dist;
 	double	light_dist;
@@ -60,7 +60,7 @@ t_vec3	calc_light(t_data *data, t_light light, t_hit hit)
 	light_diff = vec3_sub(light.pos, hit.pos);
 	light_dir = vec3_normalize(light_diff);
 	light_intensity = clamp(vec3_dot(hit.normal, light_dir), 0, 1);
-	light_intensity *= shadow(data, light, hit);
+	light_intensity *= calc_shadow(data, light, hit);
 	light_dist = vec3_mag(light_diff);
 	light_intensity *= 1.0 / (light_dist * 0.5 + 0.5);
 	light_intensity += calc_specular(data, light_dir, hit);

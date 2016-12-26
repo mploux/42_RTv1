@@ -50,6 +50,16 @@ t_mat4		mat4_identity(void)
 	return (m);
 }
 
+t_vec3		mat4_mul_vec3(t_mat4 a, t_vec3 b)
+{
+	t_vec3 result;
+
+	result.x = a.m[0] * b.x + a.m[1] * b.y + a.m[2] * b.z + a.m[3];
+	result.y = a.m[4] * b.x + a.m[5] * b.y + a.m[6] * b.z + a.m[7];
+	result.z = a.m[8] * b.x + a.m[9] * b.y + a.m[10] * b.z + a.m[11];
+	return (result);
+}
+
 t_mat4		mat4_mul(t_mat4 a, t_mat4 b)
 {
 	t_mat4	r;

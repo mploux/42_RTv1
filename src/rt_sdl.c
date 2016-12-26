@@ -27,7 +27,7 @@ int		create_rt(t_data *data, const char *name, int width, int height)
 	data->framebuffer = new_bitmap(data, width, height);
 	data->input = new_input();
 	data->zbuffer = new_zbuffer(width, height);
-	cam = transform(vec3(0, 0, 0), vec3(0, 0, 0), vec3(0, 0, 0));
+	cam = transform(vec3(-4, -1, -5), vec3(20, -65, 0), vec3(0, 0, 0));
 	data->camera = new_camera(data, cam, 70.0);
 	data->scene = new_scene();
 	return (1);
