@@ -42,3 +42,18 @@ t_vec3		vec3_clamp(t_vec3 v, double min, double max)
 	result.z = clamp(v.z, min, max);
 	return (result);
 }
+
+t_vec3		vec3_reflect(t_vec3 dir, t_vec3 normal)
+{
+	t_vec3	result;
+	double	dot;
+
+	dot = vec3_dot(dir, normal);
+	result = vec3_sub(dir, vec3_mul_d(normal, dot * 2.0));
+	return (result);
+}
+
+/*
+	public Vec3 reflect(Vec3 normal) {
+		return sub(normal.copy().mul(dot(normal) * 2.0f));
+}*/

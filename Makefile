@@ -16,6 +16,7 @@ FILES = main.c\
 		rt_sdl.c\
 		error.c\
 		scene.c\
+		scene_renderer.c\
 		ray.c\
 		hit.c\
 		light.c\

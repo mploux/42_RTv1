@@ -114,7 +114,7 @@ t_object		sphere(int color, t_vec3 pos, double radius);
 t_hit			intersect_sphere(t_data *data, t_object obj, t_ray ray);
 t_object		plane(int color, t_vec3 pos, double radius);
 t_hit			intersect_plane(t_data *data, t_object obj, t_ray ray);
-t_object		cylindre(int color, t_vec3 pos, t_vec3 rot);
+t_object		cylindre(int color, t_vec3 pos, t_vec3 rot, double r);
 t_hit			intersect_cylindre(t_data *data, t_object obj, t_ray ray);
 
 t_light			light(int color, t_vec3 pos);

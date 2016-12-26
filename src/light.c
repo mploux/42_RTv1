@@ -37,6 +37,18 @@ int		shadow(t_data *data, t_light light, t_hit hit)
 	return (1);
 }
 
+double	calc_specular(t_data *data, t_vec3 light_dir, t_hit hit)
+{
+	double	result;
+	t_vec3	light_reflection;
+	t_vec3	cam_dir;
+
+	light_reflection = vec3_reflect(vec3_mul_d(light_dir, -1), hit.normal);
+	cam_dir = vec3_normalize(vec3_sub(data->camera->pos, hit.pos));
+	result = pow(clamp(vec3_dot(cam_dir, light_reflection), 0, 1), 10);
+	return (result);
+}
+
 t_vec3	calc_light(t_data *data, t_light light, t_hit hit)
 {
 	t_vec3	light_diff;
@@ -51,6 +63,7 @@ t_vec3	calc_light(t_data *data, t_light light, t_hit hit)
 	light_intensity *= shadow(data, light, hit);
 	light_dist = vec3_mag(light_diff);
 	light_intensity *= 1.0 / (light_dist * 0.5 + 0.5);
+	light_intensity += calc_specular(data, light_dir, hit);
 	light_color = vec3_mul_d(light.color, light_intensity);
 	return (light_color);
 }
