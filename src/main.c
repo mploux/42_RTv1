@@ -6,7 +6,7 @@
 /*   By: mploux <mploux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/18 14:07:59 by mploux            #+#    #+#             */
-/*   Updated: 2016/12/24 19:52:56 by mploux           ###   ########.fr       */
+/*   Updated: 2016/12/29 00:01:03 by mploux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int		main(int ac, char **av)
 	(void) ac;
 	if (!(data = (t_data *)ft_memalloc(sizeof(t_data))))
 		error("malloc error !");
-	create_rt(data, "RTv1 !", 720, 480);
+	create_rt(data, "RTv1 !", 1280, 720);
 	loop_rt(data);
 	return (0);
 }

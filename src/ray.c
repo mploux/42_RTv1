@@ -6,7 +6,7 @@
 /*   By: mploux <mploux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/22 15:58:46 by mploux            #+#    #+#             */
-/*   Updated: 2016/12/24 23:38:02 by mploux           ###   ########.fr       */
+/*   Updated: 2016/12/28 23:56:38 by mploux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ t_hit			throw_ray(t_data *data, t_ray ray)
 	{
 		object = *((t_object *)list->content);
 		hit = object.intersect(data, object, ray);
+		hit.obj = list->content;
 		if (hit.dist > 0 && hit.dist <= dist)
 		{
 			dist = hit.dist;

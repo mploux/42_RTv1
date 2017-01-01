@@ -6,7 +6,7 @@
 #    By: mploux <mploux@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/10 06:04:58 by mploux            #+#    #+#              #
-#    Updated: 2016/12/24 20:45:12 by mploux           ###   ########.fr        #
+#    Updated: 2016/12/30 18:26:34 by mploux           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ FILES = main.c\
 		error.c\
 		scene.c\
 		scene_renderer.c\
+		scene_loader.c\
 		ray.c\
 		hit.c\
 		light.c\

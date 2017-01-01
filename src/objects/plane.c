@@ -6,7 +6,7 @@
 /*   By: mploux <mploux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/22 23:00:41 by mploux            #+#    #+#             */
-/*   Updated: 2016/12/24 20:56:59 by mploux           ###   ########.fr       */
+/*   Updated: 2017/01/01 19:55:55 by mploux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ t_hit			intersect_plane(t_data *data, t_object obj, t_ray ray)
 
 	(void) data;
 	result.dist = 0;
+	obj.pos = vec3_mul_d(obj.rot, obj.dist);
 	denom = vec3_dot(ray.dir, obj.rot);
 	if (denom > 0.01)
 	{
@@ -42,7 +43,6 @@ t_hit			intersect_plane(t_data *data, t_object obj, t_ray ray)
 			result.normal = vec3_mul_d(vec3_normalize(obj.rot), -1);
 			result.dist = dist;
 			result.pos = vec3_add(ray.pos, vec3_mul_d(ray.dir, dist));
-			result.obj = &obj;
 		}
 	}
 	return (result);

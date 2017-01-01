@@ -6,7 +6,7 @@
 /*   By: mploux <mploux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/07 17:37:53 by mploux            #+#    #+#             */
-/*   Updated: 2016/12/22 20:46:55 by mploux           ###   ########.fr       */
+/*   Updated: 2016/12/30 20:54:28 by mploux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,28 @@
 
 # define BUFF_SIZE 96
 
+# define T_NRM  "\x1B[0m"
+# define T_RED  "\x1B[31m"
+# define T_GRN  "\x1B[32m"
+# define T_YEL  "\x1B[33m"
+# define T_BLU  "\x1B[34m"
+# define T_MAG  "\x1B[35m"
+# define T_CYN  "\x1B[36m"
+# define T_WHT  "\x1B[37m"
+
 typedef struct	s_list
 {
 	void			*content;
 	size_t			content_size;
 	struct s_list	*next;
 }				t_list;
+
+typedef struct	s_map
+{
+	char			*key;
+	void			*data;
+	struct s_map	*next;
+}				t_map;
 
 typedef struct	s_gnl
 {
@@ -105,5 +121,10 @@ int				ft_lstsize(t_list *lst);
 int				ft_ishex(char *str);
 int				ft_iterative_power(int nb, int power);
 int				ft_htoi(char *hex);
+t_map			*ft_mapnew(char *key, void *data);
+void			ft_mapadd(t_map **map, t_map *new);
+void			ft_mapclear(t_map **map);
+void			*ft_mapget(t_map *map, char *key);
+void			*ft_mapget_key(t_map *map, void *data);
 
 #endif

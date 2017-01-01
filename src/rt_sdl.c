@@ -6,7 +6,7 @@
 /*   By: mploux <mploux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/18 14:12:44 by mploux            #+#    #+#             */
-/*   Updated: 2016/12/24 23:38:48 by mploux           ###   ########.fr       */
+/*   Updated: 2016/12/30 21:12:17 by mploux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int		create_rt(t_data *data, const char *name, int width, int height)
 	data->framebuffer = new_bitmap(data, width, height);
 	data->input = new_input();
 	data->zbuffer = new_zbuffer(width, height);
-	cam = transform(vec3(-4, -1, -5), vec3(20, -65, 0), vec3(0, 0, 0));
+	cam = transform(vec3(0, 0, 0), vec3(0, 0, 0), vec3(0, 0, 0));
 	data->camera = new_camera(data, cam, 70.0);
 	data->scene = new_scene();
 	return (1);
@@ -43,16 +43,15 @@ void	draw_debug(t_data *data)
 
 int		loop(t_data *data)
 {
-	draw_screen(data);
-	draw_debug(data);
 	bitmap_update(data->framebuffer);
-	clear_bitmap(data->framebuffer);
 	return (1);
 }
 
 void	loop_rt(t_data *data)
 {
 	manage_scene(data);
+	bitmap_update(data->framebuffer);
+	draw_screen(data);
 	sdl_loop(data, &loop);
 }
 

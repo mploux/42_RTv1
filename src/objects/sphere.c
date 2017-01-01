@@ -6,7 +6,7 @@
 /*   By: mploux <mploux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/22 15:55:27 by mploux            #+#    #+#             */
-/*   Updated: 2016/12/24 20:57:05 by mploux           ###   ########.fr       */
+/*   Updated: 2016/12/28 23:54:52 by mploux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,5 @@ t_hit			intersect_sphere(t_data *data, t_object obj, t_ray ray)
 	result.dist = intersect_dist(obj, ray);
 	result.pos = vec3_add(ray.pos, vec3_mul_d(ray.dir, result.dist));
 	result.normal = vec3_normalize(vec3_sub(result.pos, obj.pos));
-	result.obj = &obj;
 	return (result);
 }

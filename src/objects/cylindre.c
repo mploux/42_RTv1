@@ -6,7 +6,7 @@
 /*   By: mploux <mploux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/22 23:00:41 by mploux            #+#    #+#             */
-/*   Updated: 2016/12/24 20:56:45 by mploux           ###   ########.fr       */
+/*   Updated: 2016/12/28 23:55:02 by mploux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ t_hit			intersect_cylindre(t_data *data, t_object obj, t_ray ray)
 	t_vec3	n_diff;
 
 	(void) data;
-	result.obj = &obj;
 	result.dist = intersect_dist(obj, ray);
 	result.pos = vec3_add(ray.pos, vec3_mul_d(ray.dir, result.dist));
 	n_diff = vec3(result.pos.x - obj.pos.x, 0, result.pos.z - obj.pos.z);

@@ -1,0 +1,24 @@
+plane:
+	rot: 0 1 0
+	dist: 2
+	color: 255 255 255
+
+plane:
+	rot: 0 -1 0
+	dist: 2
+	color: 255 0 255
+
+sphere:
+	pos: 0 0 -3
+	radius: 1
+	color: 0 255 255
+
+cylindre:
+	pos: -2 0 -3
+	rot: 0 1 0
+	radius: 1
+	color: 255 255 255
+
+light:
+	pos: -4 0 0
+	color: 255 255 255

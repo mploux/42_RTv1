@@ -6,7 +6,7 @@
 #    By: mploux <mploux@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/08 16:20:21 by mploux            #+#    #+#              #
-#    Updated: 2016/12/22 20:47:38 by mploux           ###   ########.fr        #
+#    Updated: 2016/12/30 20:02:38 by mploux           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,8 @@ SRC = 	ft_atoi.c ft_bzero.c ft_isalpha.c ft_isalnum.c ft_isascii.c \
 		ft_lstnew.c ft_isupper.c ft_islower.c ft_memdup.c ft_lstdelone.c \
 		ft_lstdel.c ft_lstadd.c ft_lstiter.c ft_lstmap.c ft_realloc.c \
 		get_next_line.c ft_swap.c ft_lstclear.c ft_lstget.c ft_isstrdigit.c \
-		ft_ishex.c ft_pow.c ft_lstsize.c
+		ft_ishex.c ft_pow.c ft_lstsize.c ft_mapnew.c ft_mapadd.c ft_mapget.c \
+		ft_mapclear.c
 
 BIN = bin/
 OBJ = $(addprefix $(BIN),$(SRC:.c=.o))

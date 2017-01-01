@@ -6,7 +6,7 @@
 /*   By: mploux <mploux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/18 14:10:33 by mploux            #+#    #+#             */
-/*   Updated: 2016/12/24 21:20:32 by mploux           ###   ########.fr       */
+/*   Updated: 2017/01/01 19:56:11 by mploux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ typedef struct	s_object
 	t_vec3		rot;
 	t_vec3		scale;
 	t_vec3		color;
+	double		dist;
 	t_hit		(*intersect)(t_data*, struct s_object, t_ray);
 }				t_object;
 
@@ -93,6 +94,7 @@ typedef struct	s_camera
 
 typedef struct	s_scene
 {
+	t_map		*names;
 	t_list		*objects;
 	t_list		*lights;
 }				t_scene;
@@ -142,6 +144,7 @@ void			manage_scene(t_data *data);
 void			add_object(t_scene *scene, t_object obj);
 void			add_light(t_scene *scene, t_light light);
 void			draw_scene(t_data *data, t_ray ray, t_vec2 pix);
+void			load_scene(t_scene *scene, char *file);
 double			*new_zbuffer(int width, int height);
 void			clear_zbuffer(t_data *data, double z_far);
 void			draw_depth(t_data *data, int x, int y, double depth);
