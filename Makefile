@@ -6,80 +6,67 @@
 #    By: mploux <mploux@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/10 06:04:58 by mploux            #+#    #+#              #
-#    Updated: 2016/12/30 18:26:34 by mploux           ###   ########.fr        #
+#    Updated: 2017/03/29 16:19:27 by mploux           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = rtv1
 CC = gcc
-FILES = main.c\
-		rt_sdl.c\
-		error.c\
-		scene.c\
-		scene_renderer.c\
-		scene_loader.c\
-		ray.c\
-		hit.c\
-		light.c\
-		inputs/input.c\
-		inputs/keyboard.c\
-		inputs/mouse.c\
-		maths/vec2.c\
-		maths/vec3.c\
-		maths/vec3_1.c\
-		maths/vec4.c\
-		maths/transform.c\
-		maths/projection.c\
-		maths/mat4.c\
-		maths/maths.c\
-		graphics/renderer.c\
-		graphics/display.c\
-		graphics/color.c\
-		graphics/bitmap_sdl.c\
-		graphics/screen.c\
-		graphics/line.c\
-		graphics/camera.c\
-		graphics/zbuffer.c\
-		objects/object.c\
-		objects/plane.c\
-		objects/cylindre.c\
-		objects/sphere.c
 
-REPS = 	maths\
-		inputs\
-		graphics\
-		objects
+DEPS_DIR = deps
+BIN_DIR = bin
+SRCS_DIR = srcs
+INCLUDES_DIR = includes
 
-BIN = bin/
-DIRS = $(addprefix $(BIN),$(REPS))
-SRC = $(addprefix src/,$(FILES))
-OBJ = $(addprefix $(BIN),$(FILES:.c=.o))
+SDL_DIR = $(DEPS_DIR)/SDL2-2.0.5
+SDL_LIB = $(SDL_DIR)/.libs/libSDL2.a
+SDL_INCLUDES = $(SDL_DIR)/include
 
-INCLUDES = -I includes/ -I libft/
-LIBS = -L libft/
+LIBFT_DIR = $(DEPS_DIR)/libft
+LIBFT_LIB = $(LIBFT_DIR)/libft.a
+LIBFT_INCLUDES = $(LIBFT_DIR)
 
-CFLAGS = -lXext -lX11 -lft -lm -lSDL2
-FLAGS = -Wall -Wextra -O2 -march=native -Ofast
+FILES =\
+main.c
+
+SRCS = $(addprefix $(SRCS_DIR)/,$(FILES))
+OBJS = $(addprefix $(BIN_DIR)/,$(FILES:.c=.o))
+
+INCLUDES = -I $(INCLUDES_DIR) -I $(LIBFT_INCLUDES)/
+LIBS = -L $(LIBFT_DIR)
+
+CFLAGS = -lSDL2 -lXext -lX11 -lft -lm -ldl
+FLAGS = -Wall -Wextra -O2 -march=native -Ofast -pedantic
 
 .PHONY: all clean fclean re
 
+$(NAME): $(SDL_LIB) $(LIBFT_LIB) $(BIN_DIR) $(OBJS)
+	$(CC) $(FLAGS) -o $(NAME) $(OBJS) $(INCLUDES) $(LIBS) $(CFLAGS)
+
 all: $(NAME)
 
-$(NAME): $(BIN) $(OBJ)
-	@make -C libft/
-	$(CC) $(FLAGS) -o $(NAME) $(OBJ) $(INCLUDES) $(LIBS) $(CFLAGS)
+$(SDL_LIB):
+	$(shell tar -xzf $(SDL_DIR).tar.gz -C $(DEPS_DIR))
+	cd $(SDL_DIR) && ./configure
+	make -C $(SDL_DIR)
 
-$(BIN):
-	@mkdir $(BIN)
-	@mkdir -p $(DIRS)
+$(LIBFT_LIB):
+	make -C $(LIBFT_DIR)
 
-bin/%.o: src/%.c
-	$(CC) $(FLAGS) -o $@ -c $< $(INCLUDES)
+$(BIN_DIR):
+	@mkdir -p $(dir $(OBJS))
+
+$(BIN_DIR)/%.o: $(SRCS_DIR)/%.c
+	@$(CC) $(FLAGS) -MMD -o $@ -c $< $(INCLUDES)
 
 clean:
-	rm -rf $(BIN)
+	@rm -rf $(BIN_DIR)
 
-fclean: clean
-	rm -rf $(NAME)
+clean-libs: clean
+	@make fclean -C $(LIBFT_DIR) > /dev/null
+	@rm -rf $(SDL_DIR)
+
+fclean: clean-libs
+	@rm -rf $(NAME)
 
 re: fclean all

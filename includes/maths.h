@@ -6,14 +6,14 @@
 /*   By: mploux <mploux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/18 14:27:50 by mploux            #+#    #+#             */
-/*   Updated: 2016/12/22 20:21:19 by mploux           ###   ########.fr       */
+/*   Updated: 2017/03/29 13:36:45 by mploux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MATHS_H
 # define MATHS_H
 
-# include <math.h>
+# include <maths.h>
 
 # define ABS(x) (x < 0 ? -(x) : x)
 # define DTR(angle) (angle * M_PI / 180)
