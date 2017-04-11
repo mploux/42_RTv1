@@ -1,29 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mploux <mploux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/18 14:07:59 by mploux            #+#    #+#             */
-/*   Updated: 2017/04/11 14:25:43 by mploux           ###   ########.fr       */
+/*   Created: 2016/11/29 05:48:14 by mploux            #+#    #+#             */
+/*   Updated: 2016/12/20 18:44:30 by mploux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
-#include "graphics.h"
-#include <stdlib.h>
-#include <fcntl.h>
 
-int		main(int ac, char **av)
+int		error(char *error)
 {
-	t_data	*data;
-
-	(void) av;
-	(void) ac;
-	if (!(data = (t_data *)ft_memalloc(sizeof(t_data))))
-		error("malloc error !");
-	create_rt(data, "RTv1 !", 1280, 720);
-	loop_rt(data);
+	ft_putendl_fd(error, 2);
+	exit(-1);
 	return (0);
 }

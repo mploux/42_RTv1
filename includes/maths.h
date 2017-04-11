@@ -6,14 +6,14 @@
 /*   By: mploux <mploux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/18 14:27:50 by mploux            #+#    #+#             */
-/*   Updated: 2017/03/29 13:36:45 by mploux           ###   ########.fr       */
+/*   Updated: 2017/04/11 17:10:53 by mploux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MATHS_H
 # define MATHS_H
 
-# include <maths.h>
+# include <math.h>
 
 # define ABS(x) (x < 0 ? -(x) : x)
 # define DTR(angle) (angle * M_PI / 180)
@@ -73,8 +73,8 @@ t_mat4			mat4(t_vec4 a, t_vec4 b, t_vec4 c, t_vec4 d);
 t_mat4			mat4_identity();
 t_mat4			mat4_mul(t_mat4 a, t_mat4 b);
 t_mat4			mat4_translate(t_vec3 v);
-t_mat4			mat4_rotate(t_vec3 axis, double angle);
-t_mat4			mat4_rotate_xyz(double rx, double ry, double rz);
+t_mat4			mat4_rotate_v(t_vec3 rot);
+t_mat4			mat4_rotate_vi(t_vec3 rot);
 t_mat4			mat4_scale(t_vec3 v);
 t_mat4			mat4_ortho(t_vec2 w, t_vec2 h, t_vec2 d);
 t_mat4			mat4_persp(double fov, double aspect, double near, double far);

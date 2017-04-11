@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   object.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mploux <mploux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/18 14:07:59 by mploux            #+#    #+#             */
-/*   Updated: 2017/04/11 14:25:43 by mploux           ###   ########.fr       */
+/*   Created: 2016/12/22 15:42:10 by mploux            #+#    #+#             */
+/*   Updated: 2017/04/11 16:17:42 by mploux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
-#include "graphics.h"
-#include <stdlib.h>
-#include <fcntl.h>
 
-int		main(int ac, char **av)
+t_object	object(t_transform trs, int color, t_hit *(*intersect)
+												(t_object obj, t_ray))
 {
-	t_data	*data;
+	t_object object;
 
-	(void) av;
-	(void) ac;
-	if (!(data = (t_data *)ft_memalloc(sizeof(t_data))))
-		error("malloc error !");
-	create_rt(data, "RTv1 !", 1280, 720);
-	loop_rt(data);
-	return (0);
+	object.pos = trs.pos;
+	object.rot = trs.rot;
+	object.scale = trs.scale;
+	object.color = color_to_vec3(color);
+	object.intersect = intersect;
+	return (object);
 }

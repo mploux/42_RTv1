@@ -1,29 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   hit.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mploux <mploux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/18 14:07:59 by mploux            #+#    #+#             */
-/*   Updated: 2017/04/11 14:25:43 by mploux           ###   ########.fr       */
+/*   Created: 2016/12/22 17:00:28 by mploux            #+#    #+#             */
+/*   Updated: 2017/04/11 16:40:00 by mploux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
-#include "graphics.h"
-#include <stdlib.h>
-#include <fcntl.h>
 
-int		main(int ac, char **av)
+t_hit		*new_hit()
 {
-	t_data	*data;
+	t_hit *result;
 
-	(void) av;
-	(void) ac;
-	if (!(data = (t_data *)ft_memalloc(sizeof(t_data))))
-		error("malloc error !");
-	create_rt(data, "RTv1 !", 1280, 720);
-	loop_rt(data);
-	return (0);
+	if (!(result = (t_hit *)ft_memalloc(sizeof(t_hit))))
+		return (NULL);
+	result->obj = NULL;
+	result->pos = vec3(0, 0, 0);
+	result->normal = vec3(0, 0, 0);
+	result->dist = 0;
+	return (result);
+}
+
+int			hit_free(t_hit **hit)
+{
+	if (!hit || !*hit)
+		return (0);
+	free(*hit);
+	*hit = NULL;
+	return (1);
 }

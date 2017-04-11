@@ -1,29 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   screen.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mploux <mploux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/18 14:07:59 by mploux            #+#    #+#             */
-/*   Updated: 2017/04/11 14:25:43 by mploux           ###   ########.fr       */
+/*   Created: 2016/12/20 18:47:43 by mploux            #+#    #+#             */
+/*   Updated: 2016/12/22 21:29:30 by mploux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 #include "graphics.h"
-#include <stdlib.h>
-#include <fcntl.h>
 
-int		main(int ac, char **av)
+void		draw_screen(t_data *data)
 {
-	t_data	*data;
+	int			x;
+	int			y;
+	t_ray		ray;
 
-	(void) av;
-	(void) ac;
-	if (!(data = (t_data *)ft_memalloc(sizeof(t_data))))
-		error("malloc error !");
-	create_rt(data, "RTv1 !", 1280, 720);
-	loop_rt(data);
-	return (0);
+	y = -1;
+	while (++y < data->win->h)
+	{
+		x = -1;
+		while (++x < data->win->w)
+		{
+			ray = cam_ray(data, (double)x, (double)y);
+			draw_scene(data, ray, vec2(x, y));
+		}
+	}
 }
