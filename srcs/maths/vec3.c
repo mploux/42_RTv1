@@ -12,7 +12,7 @@
 
 #include "maths.h"
 
-t_vec3		vec3(double x, double y, double z)
+t_vec3		vec3(float x, float y, float z)
 {
 	t_vec3 v;
 
@@ -41,7 +41,7 @@ t_vec3		vec3_sub(t_vec3 a, t_vec3 b)
 t_vec3		vec3_normalize(t_vec3 a)
 {
 	t_vec3	result;
-	double	length;
+	float	length;
 
 	length = sqrt(a.x * a.x + a.y * a.y + a.z * a.z);
 	result.x = a.x / length;
@@ -50,7 +50,7 @@ t_vec3		vec3_normalize(t_vec3 a)
 	return (result);
 }
 
-double		vec3_dot(t_vec3 a, t_vec3 b)
+float		vec3_dot(t_vec3 a, t_vec3 b)
 {
 	return (a.x * b.x + a.y * b.y + a.z * b.z);
 }

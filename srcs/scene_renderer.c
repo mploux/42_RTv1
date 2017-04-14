@@ -6,7 +6,7 @@
 /*   By: mploux <mploux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/23 18:51:35 by mploux            #+#    #+#             */
-/*   Updated: 2017/04/11 19:01:53 by mploux           ###   ########.fr       */
+/*   Updated: 2017/04/12 13:53:56 by mploux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,18 @@ static int	hit_color(t_data *data, t_hit *hit)
 
 	object = *((t_object *)hit->obj);
 	light_color = calc_lights(data, hit);
-	// printf("LIGHT: %f %f %f\n", light_color.x, light_color.y, light_color.z);
 	final_color = vec3_mul(object.color, light_color);
+	final_color = vec3_add(final_color, hit->specular);
+	final_color = vec3_clamp(final_color, 0, 255);
 	return (to_color(final_color));
 }
 
 void		draw_scene(t_data *data, t_ray ray, t_vec2 pix)
 {
-	t_hit	*hit;
+	t_hit	hit;
 
 	hit = throw_ray(data, ray);
-	if (!hit)
-		return ;
-	if (hit->dist > 0)
-		draw_pix(data, pix.x, pix.y, hit_color(data, hit));
-	hit_free(&hit);
+	hit.specular = vec3(0, 0, 0);
+	if (hit.dist > 0)
+		draw_pix(data, pix.x, pix.y, hit_color(data, &hit));
 }

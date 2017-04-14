@@ -6,7 +6,7 @@
 #    By: mploux <mploux@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/10 06:04:58 by mploux            #+#    #+#              #
-#    Updated: 2017/04/11 16:44:26 by mploux           ###   ########.fr        #
+#    Updated: 2017/04/12 12:49:55 by mploux           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,6 +58,13 @@ objects/cylindre.c\
 objects/object.c\
 objects/plane.c\
 objects/sphere.c\
+quadratics/intersect.c\
+quadratics/normal.c\
+quadratics/rotate_x.c\
+quadratics/rotate_y.c\
+quadratics/rotate_z.c\
+quadratics/scale.c\
+quadratics/translate.c\
 ray.c\
 rt.c\
 scene.c\

@@ -13,7 +13,7 @@
 #include "graphics.h"
 #include "maths.h"
 
-void	draw_pix(t_data *data, double x, double y, int color)
+void	draw_pix(t_data *data, float x, float y, int color)
 {
 	bitmap_draw_pix(data->framebuffer, (int)x, (int)y, color);
 }

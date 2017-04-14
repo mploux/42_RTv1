@@ -12,7 +12,7 @@
 
 #include "maths.h"
 
-double		vec3_mag(t_vec3 a)
+float		vec3_mag(t_vec3 a)
 {
 	return (sqrt(a.x * a.x + a.y * a.y + a.z * a.z));
 }
@@ -25,7 +25,7 @@ t_vec3		vec3_mul(t_vec3 a, t_vec3 b)
 	return (a);
 }
 
-t_vec3		vec3_mul_d(t_vec3 a, double d)
+t_vec3		vec3_mul_d(t_vec3 a, float d)
 {
 	a.x *= d;
 	a.y *= d;
@@ -33,7 +33,7 @@ t_vec3		vec3_mul_d(t_vec3 a, double d)
 	return (a);
 }
 
-t_vec3		vec3_clamp(t_vec3 v, double min, double max)
+t_vec3		vec3_clamp(t_vec3 v, float min, float max)
 {
 	t_vec3 result;
 
@@ -46,7 +46,7 @@ t_vec3		vec3_clamp(t_vec3 v, double min, double max)
 t_vec3		vec3_reflect(t_vec3 dir, t_vec3 normal)
 {
 	t_vec3	result;
-	double	dot;
+	float	dot;
 
 	dot = vec3_dot(dir, normal);
 	result = vec3_sub(dir, vec3_mul_d(normal, dot * 2.0));

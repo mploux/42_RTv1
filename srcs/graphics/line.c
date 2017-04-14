@@ -15,8 +15,8 @@
 void	draw_line_x(t_data *data, t_vec2 a, t_vec2 b, t_vec2 colors)
 {
 	t_vec2	pos;
-	double	n;
-	double	nx;
+	float	n;
+	float	nx;
 
 	pos.x = -1;
 	pos.y = a.y;
@@ -32,8 +32,8 @@ void	draw_line_x(t_data *data, t_vec2 a, t_vec2 b, t_vec2 colors)
 void	draw_line_y(t_data *data, t_vec2 a, t_vec2 b, t_vec2 colors)
 {
 	t_vec2	pos;
-	double	n;
-	double	ny;
+	float	n;
+	float	ny;
 
 	pos.x = a.x;
 	pos.y = -1;

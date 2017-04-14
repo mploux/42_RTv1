@@ -12,7 +12,7 @@
 
 #include "graphics.h"
 
-t_camera	*new_camera(t_data *data, t_transform trs, double fov)
+t_camera	*new_camera(t_data *data, t_transform trs, float fov)
 {
 	t_camera *cam;
 
@@ -21,16 +21,16 @@ t_camera	*new_camera(t_data *data, t_transform trs, double fov)
 	cam->z_near = 5;
 	cam->z_far = 1000;
 	cam->fov = fov;
-	cam->aspect = (double)data->win->w / (double)data->win->h;
+	cam->aspect = (float)data->win->w / (float)data->win->h;
 	cam->pos = trs.pos;
 	cam->rot = trs.rot;
 	cam->scale = trs.scale;
 	return (cam);
 }
 
-t_ray		cam_ray(t_data *data, double x, double y)
+t_ray		cam_ray(t_data *data, float x, float y)
 {
-	double	fov;
+	float	fov;
 	t_ray	result;
 	t_vec3	scr;
 	t_vec3	dir;

@@ -26,10 +26,10 @@ t_mat4		mat4_ortho(t_vec2 w, t_vec2 h, t_vec2 d)
 	return (result);
 }
 
-t_mat4		mat4_persp(double fov, double aspect, double near, double far)
+t_mat4		mat4_persp(float fov, float aspect, float near, float far)
 {
 	t_mat4 result;
-	double tfov;
+	float tfov;
 
 	tfov = tan(DTR(fov) / 2.0);
 	result = mat4_identity();
@@ -42,7 +42,7 @@ t_mat4		mat4_persp(double fov, double aspect, double near, double far)
 	return (result);
 }
 
-t_mat4		mat4_screen_space(double h_width, double h_height)
+t_mat4		mat4_screen_space(float h_width, float h_height)
 {
 	t_mat4 result;
 

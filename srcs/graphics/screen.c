@@ -25,7 +25,7 @@ void		draw_screen(t_data *data)
 		x = -1;
 		while (++x < data->win->w)
 		{
-			ray = cam_ray(data, (double)x, (double)y);
+			ray = cam_ray(data, (float)x, (float)y);
 			draw_scene(data, ray, vec2(x, y));
 		}
 	}

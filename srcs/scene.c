@@ -6,7 +6,7 @@
 /*   By: mploux <mploux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/22 20:35:21 by mploux            #+#    #+#             */
-/*   Updated: 2017/04/11 20:31:51 by mploux           ###   ########.fr       */
+/*   Updated: 2017/04/12 13:59:27 by mploux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,10 @@ void		manage_scene(t_data *data)
 	add_object(s, plane(0xffffff, vec3(-1, 0, 0), 5));
 	add_object(s, plane(0xffffff, vec3(1, 0, 0), 5));
 	add_object(s, plane(0xffffff, vec3(0, 1, 0), 2));
+	add_object(s, plane(0xffffff, vec3(0, -1, 0), 2));
 	add_object(s, plane(0xffffff, vec3(0, 0, -1), 10));
 
-	// add_object(s, sphere(0xffffff, vec3(-2, -2.2, -4), 1));
+	// add_object(s, sphere(0xffffff, vec3(0, 0, -4), 1));
 	// add_object(s, sphere(0xffffff, vec3(-2, -2.2, -8), 1));
 	// add_object(s, sphere(0xffffff, vec3(2, -2.2, -4), 1));
 	// add_object(s, sphere(0xffffff, vec3(2, -2.2, -8), 1));
@@ -42,15 +43,17 @@ void		manage_scene(t_data *data)
 	// add_object(s, sphere(0xffffff, vec3(-2, 2.2, -4), 1));
 	// add_object(s, sphere(0xffffff, vec3(-2, 2.2, -8), 1));
 	// add_object(s, sphere(0xffffff, vec3(2, 2.2, -4), 1));
-	// add_object(s, sphere(0xffffff, vec3(2, 2.2, -8), 1));
-
-	add_object(s, cylindre(0xffffff, vec3(0, 0, -6), vec3(0, 0, 90), 0.5));
+	// add_object(s, sphere(0xffffff, vec3(0, 0, -4), 1));
+	//
+	// add_object(s, cylindre(0xff0000, vec3(0, 0, -4), vec3(0, 0, 45), 0.8));
+	add_object(s, cone(0xff0000, vec3(0, 0, -4), vec3(0, 0, 45), 45));
 	// add_object(s, cylindre(0xffffff, vec3(-2, 0, -8), vec3(0, 0, 0), 0.5));
 	// add_object(s, cylindre(0xffffff, vec3(2, 0, -4), vec3(0, 0, 90), 0.5));
 	// add_object(s, cylindre(0xffffff, vec3(2, 0, -8), vec3(0, 0, 0), 0.5));
 
 	// add_light(s, light(0xffff00, vec3(0, 0, 0)));
-	add_light(s, light(0xffffff, vec3(-4, 0, -1)));
+	add_light(s, light(0x00ffff, vec3(-4, 0, -2)));
+	add_light(s, light(0x0000ff, vec3(4, 0, -2)));
 }
 
 void		add_object(t_scene *scene, t_object obj)

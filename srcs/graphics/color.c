@@ -12,7 +12,7 @@
 
 #include "graphics.h"
 
-int		col_lerp(int a, int b, double n)
+int		col_lerp(int a, int b, float n)
 {
 	t_vec3 ca;
 	t_vec3 cb;
