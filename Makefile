@@ -76,8 +76,8 @@ OBJS = $(addprefix $(BIN_DIR)/,$(FILES:.c=.o))
 INCLUDES = -I $(INCLUDES_DIR) -I $(LIBFT_INCLUDES)/ -I $(SDL_INCLUDES)/
 LIBS = -L $(LIBFT_DIR) -L $(SDL_LIB_DIR)
 
-# CFLAGS = -lSDL2 -lXext -lX11 -lft -lm -ldl
-SDL_FLAGS = -lSDL2 -framework Cocoa -framework CoreAudio -framework AudioToolbox -framework ForceFeedback -framework CoreVideo -framework Carbon -framework IOKit -liconv
+SDL_FLAGS = -lSDL2 -lXext -lX11 -lft -lm -ldl
+# SDL_FLAGS = -lSDL2 -framework Cocoa -framework CoreAudio -framework AudioToolbox -framework ForceFeedback -framework CoreVideo -framework Carbon -framework IOKit -liconv
 
 FLAGS = -Wall -Wextra -O2 -march=native -Ofast -pedantic
 

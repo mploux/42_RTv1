@@ -6,13 +6,13 @@
 /*   By: mploux <mploux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/24 17:50:10 by mploux            #+#    #+#             */
-/*   Updated: 2017/04/11 15:57:00 by mploux           ###   ########.fr       */
+/*   Updated: 2017/05/02 20:15:09 by mploux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-void		new_sdl_display(t_data *data, const char *title, int width, int height)
+void	new_sdl_display(t_data *data, const char *title, int width, int height)
 {
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 		error("sdl error: unable to initialize sdl !");
@@ -28,7 +28,7 @@ void		new_sdl_display(t_data *data, const char *title, int width, int height)
 	data->win->name = (char *)title;
 }
 
-void		sdl_loop(t_data *data, int (*loop)(t_data *))
+void	sdl_loop(t_data *data, int (*loop)(t_data *))
 {
 	SDL_Event event;
 
@@ -39,7 +39,9 @@ void		sdl_loop(t_data *data, int (*loop)(t_data *))
 	{
 		while (SDL_PollEvent(&event) != 0)
 		{
-			if (event.type == SDL_QUIT || event.key.keysym.sym == SDLK_ESCAPE)
+			if (event.type == SDL_QUIT ||
+				(event.type == SDL_KEYDOWN &&
+				event.key.keysym.sym == SDLK_ESCAPE))
 				exit_rt(data);
 		}
 		loop(data);

@@ -6,7 +6,7 @@
 /*   By: mploux <mploux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/22 20:35:21 by mploux            #+#    #+#             */
-/*   Updated: 2017/04/12 13:59:27 by mploux           ###   ########.fr       */
+/*   Updated: 2017/05/02 20:17:36 by mploux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void		manage_scene(t_data *data)
 	// add_object(s, sphere(0xffffff, vec3(0, 0, -4), 1));
 	//
 	// add_object(s, cylindre(0xff0000, vec3(0, 0, -4), vec3(0, 0, 45), 0.8));
-	add_object(s, cone(0xff0000, vec3(0, 0, -4), vec3(0, 0, 45), 45));
+	add_object(s, cone(0xff0000, vec3(0, 0, -4), vec3(0, 0, 45), vec3(1, 0.5, 1)));
 	// add_object(s, cylindre(0xffffff, vec3(-2, 0, -8), vec3(0, 0, 0), 0.5));
 	// add_object(s, cylindre(0xffffff, vec3(2, 0, -4), vec3(0, 0, 90), 0.5));
 	// add_object(s, cylindre(0xffffff, vec3(2, 0, -8), vec3(0, 0, 0), 0.5));

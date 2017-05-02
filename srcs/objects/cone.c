@@ -6,7 +6,7 @@
 /*   By: mploux <mploux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/22 23:00:41 by mploux            #+#    #+#             */
-/*   Updated: 2017/04/12 17:47:45 by mploux           ###   ########.fr       */
+/*   Updated: 2017/05/02 20:05:17 by mploux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,13 @@ static void		cone_quadratic(t_object *obj)
 	quadratic_translate(obj->pos, &obj->quadra);
 }
 
-t_object		cone(int color, t_vec3 pos, t_vec3 rot, float angle)
+t_object		cone(int color, t_vec3 pos, t_vec3 rot, t_vec3 scale)
 {
 	t_object	result;
 	t_transform	trs;
 	float		y_scale;
 
-	trs = transform(pos, rot, vec3(1, 1, 1));
+	trs = transform(pos, rot, scale);
 	result = object(trs, color, &intersect_cone);
 	cone_quadratic(&result);
 	return (result);

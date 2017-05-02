@@ -6,7 +6,7 @@
 /*   By: mploux <mploux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/18 14:10:33 by mploux            #+#    #+#             */
-/*   Updated: 2017/04/12 17:26:27 by mploux           ###   ########.fr       */
+/*   Updated: 2017/05/02 20:05:45 by mploux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ t_object		plane(int color, t_vec3 pos, float radius);
 t_hit			intersect_plane(t_object obj, t_ray ray);
 t_object		cylindre(int color, t_vec3 pos, t_vec3 rot, float r);
 t_hit			intersect_cylindre(t_object obj, t_ray ray);
-t_object		cone(int color, t_vec3 pos, t_vec3 rot, float angle);
+t_object		cone(int color, t_vec3 pos, t_vec3 rot, t_vec3 angle);
 t_hit			intersect_cone(t_object obj, t_ray ray);
 
 t_light			light(int color, t_vec3 pos);
