@@ -6,7 +6,7 @@
 #    By: mploux <mploux@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/10 06:04:58 by mploux            #+#    #+#              #
-#    Updated: 2017/04/12 12:49:55 by mploux           ###   ########.fr        #
+#    Updated: 2017/05/04 21:00:14 by mploux           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,6 +58,9 @@ objects/cylindre.c\
 objects/object.c\
 objects/plane.c\
 objects/sphere.c\
+scenes/scene.c\
+scenes/scene_renderer.c\
+scenes/parser/scene_parser.c\
 quadratics/intersect.c\
 quadratics/normal.c\
 quadratics/rotate_x.c\
@@ -66,9 +69,7 @@ quadratics/rotate_z.c\
 quadratics/scale.c\
 quadratics/translate.c\
 ray.c\
-rt.c\
-scene.c\
-scene_renderer.c
+rt.c
 
 SRCS = $(addprefix $(SRCS_DIR)/,$(FILES))
 OBJS = $(addprefix $(BIN_DIR)/,$(FILES:.c=.o))
@@ -81,7 +82,7 @@ SDL_FLAGS = -lSDL2 -lXext -lX11 -lft -lm -ldl
 
 FLAGS = -Wall -Wextra -O2 -march=native -Ofast -pedantic
 
-.PHONY: all clean clean-libs fclean re
+.PHONY: all test clean clean-libs fclean re
 
 $(NAME): $(SDL_LIB) $(LIBFT_LIB) $(BIN_DIR) $(OBJS)
 	@printf "\r$(YELLOW)Building RTv1...$(NO_COLOR)";
@@ -112,6 +113,9 @@ $(BIN_DIR):
 
 $(BIN_DIR)/%.o: $(SRCS_DIR)/%.c
 	@$(CC) $(FLAGS) -MMD -o $@ -c $< $(INCLUDES)
+
+test: all
+	@./$(NAME)
 
 clean:
 	@rm -rf $(BIN_DIR)

@@ -6,7 +6,7 @@
 /*   By: mploux <mploux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/18 14:10:33 by mploux            #+#    #+#             */
-/*   Updated: 2017/05/02 20:05:45 by mploux           ###   ########.fr       */
+/*   Updated: 2017/05/04 21:00:47 by mploux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <SDL.h>
 # include <stdlib.h>
+# include <fcntl.h>
 # include <string.h>
 # include "libft.h"
 # include "maths.h"
@@ -25,6 +26,9 @@
 typedef struct s_mesh		t_mesh;
 typedef struct s_bitmap		t_bitmap;
 typedef struct s_input		t_input;
+
+# define P_OK				0
+# define P_I_OBJECT_NAME	(1 << 1)
 
 typedef struct	s_win
 {
@@ -99,7 +103,8 @@ typedef struct	s_object
 
 typedef struct	s_scene
 {
-	t_map		*names;
+	t_camera	*camera;
+	t_vec3		ambiant_light;
 	t_list		*objects;
 	t_list		*lights;
 }				t_scene;
@@ -110,15 +115,14 @@ typedef struct	s_data
 	SDL_Surface	*sdl_surface;
 	t_win		*win;
 	t_bitmap	*framebuffer;
-	t_camera	*camera;
 	t_scene		*scene;
 }				t_data;
 
-t_object		sphere(int color, t_vec3 pos, float radius);
+t_object		sphere(int color, t_vec3 pos, t_vec3 rot, t_vec3 scale);
 t_hit			intersect_sphere(t_object obj, t_ray ray);
-t_object		plane(int color, t_vec3 pos, float radius);
+t_object		plane(int color, t_vec3 dir, float dist);
 t_hit			intersect_plane(t_object obj, t_ray ray);
-t_object		cylindre(int color, t_vec3 pos, t_vec3 rot, float r);
+t_object		cylindre(int color, t_vec3 pos, t_vec3 rot, t_vec3 scale);
 t_hit			intersect_cylindre(t_object obj, t_ray ray);
 t_object		cone(int color, t_vec3 pos, t_vec3 rot, t_vec3 angle);
 t_hit			intersect_cone(t_object obj, t_ray ray);
@@ -151,8 +155,9 @@ t_object		object(t_transform trs, int type, t_hit (*intersect)
 t_ray			nray(t_vec3 pos, t_vec3 dir);
 t_hit			throw_ray(t_data *data, t_ray ray);
 t_ray			cam_ray(t_data *data, float x, float y);
-t_scene			*new_scene();
-void			manage_scene(t_data *data);
+t_scene			*new_scene(t_data *data, char *scene_path);
+void			manage_scene(t_scene *s);
+int				parse_scene(t_scene *scene, char *name);
 void			add_object(t_scene *scene, t_object obj);
 void			add_light(t_scene *scene, t_light light);
 void			draw_scene(t_data *data, t_ray ray, t_vec2 pix);

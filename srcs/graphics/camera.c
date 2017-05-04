@@ -6,7 +6,7 @@
 /*   By: mploux <mploux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/22 15:16:41 by mploux            #+#    #+#             */
-/*   Updated: 2017/04/11 15:32:33 by mploux           ###   ########.fr       */
+/*   Updated: 2017/05/04 20:40:53 by mploux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,13 @@ t_ray		cam_ray(t_data *data, float x, float y)
 
 	scr.x = x / data->win->w * 2 - 1;
 	scr.y = y / data->win->h * -2 + 1;
-	fov = tan(DTR(data->camera->fov) / 2.0);
-	dir.x = scr.x * data->camera->aspect * fov;
+	fov = tan(DTR(data->scene->camera->fov) / 2.0);
+	dir.x = scr.x * data->scene->camera->aspect * fov;
 	dir.y = scr.y * fov;
 	dir.z = -1;
-	rot = data->camera->rot;
+	rot = data->scene->camera->rot;
 	dir = mat4_mul_vec3(mat4_rotate_v(rot), dir);
-	result.pos = data->camera->pos;
+	result.pos = data->scene->camera->pos;
 	result.dir = vec3_normalize(dir);
 	return (result);
 }

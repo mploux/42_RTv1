@@ -1,7 +1,7 @@
-plane:
-	rot: 0 1 0
-	dist: 2
-	color: 255 255 255
+camera:
+	pos: 0 0 -5
+	rot: 0 0 0
+	fov: 70
 
 plane:
 	rot: 0 -1 0

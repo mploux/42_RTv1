@@ -6,7 +6,7 @@
 /*   By: mploux <mploux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/22 23:00:41 by mploux            #+#    #+#             */
-/*   Updated: 2017/04/12 13:27:33 by mploux           ###   ########.fr       */
+/*   Updated: 2017/05/04 19:41:30 by mploux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@ static void		cylindre_quadratic(t_object *obj)
 	quadratic_translate(obj->pos, &obj->quadra);
 }
 
-t_object		cylindre(int color, t_vec3 pos, t_vec3 rot, float r)
+t_object		cylindre(int color, t_vec3 pos, t_vec3 rot, t_vec3 scale)
 {
 	t_object	result;
 	t_transform	trs;
 
-	trs = transform(pos, rot, vec3(r, r, r));
+	trs = transform(pos, rot, scale);
 	result = object(trs, color, &intersect_cylindre);
 	cylindre_quadratic(&result);
 	return (result);

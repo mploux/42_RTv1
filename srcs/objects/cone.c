@@ -6,7 +6,7 @@
 /*   By: mploux <mploux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/22 23:00:41 by mploux            #+#    #+#             */
-/*   Updated: 2017/05/02 20:05:17 by mploux           ###   ########.fr       */
+/*   Updated: 2017/05/04 20:44:22 by mploux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ t_object		cone(int color, t_vec3 pos, t_vec3 rot, t_vec3 scale)
 {
 	t_object	result;
 	t_transform	trs;
-	float		y_scale;
 
 	trs = transform(pos, rot, scale);
 	result = object(trs, color, &intersect_cone);

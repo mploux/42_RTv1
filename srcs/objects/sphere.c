@@ -6,7 +6,7 @@
 /*   By: mploux <mploux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/22 15:55:27 by mploux            #+#    #+#             */
-/*   Updated: 2017/04/12 13:28:08 by mploux           ###   ########.fr       */
+/*   Updated: 2017/05/04 19:40:56 by mploux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@ static void		sphere_quadratic(t_object *obj)
 	quadratic_translate(obj->pos, &obj->quadra);
 }
 
-t_object		sphere(int color, t_vec3 pos, float radius)
+t_object		sphere(int color, t_vec3 pos, t_vec3 rot, t_vec3 scale)
 {
 	t_object	result;
 	t_transform	trs;
 
-	trs = transform(pos, vec3(0, 0, 0), vec3(radius, radius, radius));
+	trs = transform(pos, rot, scale);
 	result = object(trs, color, &intersect_sphere);
 	sphere_quadratic(&result);
 	return (result);
