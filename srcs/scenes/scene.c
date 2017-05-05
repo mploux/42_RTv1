@@ -6,7 +6,7 @@
 /*   By: mploux <mploux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/22 20:35:21 by mploux            #+#    #+#             */
-/*   Updated: 2017/05/05 20:22:41 by mploux           ###   ########.fr       */
+/*   Updated: 2017/05/05 20:36:48 by mploux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_scene		*new_scene(t_data *data, char *scene_path)
 	scene->objects = NULL;
 	scene->lights = NULL;
 	scene->camera = NULL;
-	scene->ambiant_light = vec3(0, 0, 0);
+	scene->ambiant_light = vec3(20, 20, 20);
 	scene->data = data;
 	parse_scene(scene, scene_path);
 	if (!scene->camera)
