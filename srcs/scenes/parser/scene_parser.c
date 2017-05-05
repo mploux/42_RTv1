@@ -6,7 +6,7 @@
 /*   By: mploux <mploux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 18:00:35 by mploux            #+#    #+#             */
-/*   Updated: 2017/05/05 19:31:56 by mploux           ###   ########.fr       */
+/*   Updated: 2017/05/05 20:27:38 by mploux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		add_correct_object(t_scene *s, char *obj, t_vec3 col, t_transform trs)
 {
-	int color;
+	int		color;
 
 	color = to_color(col);
 	if (ft_strequ(obj, "plane:"))
@@ -27,6 +27,10 @@ int		add_correct_object(t_scene *s, char *obj, t_vec3 col, t_transform trs)
 		add_object(s, cone(color, trs.pos, trs.rot, trs.scale));
 	else if (ft_strequ(obj, "light:"))
 		add_light(s, light(color, trs.pos));
+	else if (ft_strequ(obj, "ambiant_light:"))
+		s->ambiant_light = col;
+	else if (ft_strequ(obj, "camera:"))
+		s->camera = new_camera(s->data, trs.pos, trs.rot, trs.scale.x);
 	else
 		return (P_I_OBJECT_NAME);
 	return (P_OK);
@@ -51,7 +55,7 @@ t_vec3		parse_color(char *line, int *ret)
 		else
 			*ret &= P_I_OBJECT_COLOR;
 	}
-	// ft_tabclear(&toks);
+	ft_tabclear(&toks);
 	return (result);
 }
 
@@ -119,7 +123,7 @@ t_vec3		parse_scale(char **toks, int *ret)
 		else
 			*ret &= P_I_OBJECT_SCALE;
 	}
-	else if (ft_strequ(toks[0], "\tdist:"))
+	else if (ft_strequ(toks[0], "\tdist:") || ft_strequ(toks[0], "\tfov:"))
 	{
 		if (toks[1])
 			result = vec3(ft_atoi(toks[1]), 0, 0);
@@ -147,7 +151,7 @@ t_transform parse_transform(char *line, int *ret, t_transform trs)
 		result.scale = parse_scale(toks, ret);
 	else
 		result.scale = trs.scale;
-	// ft_tabclear(&toks);
+	ft_tabclear(&toks);
 	return (result);
 }
 
@@ -163,20 +167,14 @@ int		parse_objects(int fd, t_scene *s, char **line)
 	trs = transform(vec3(0, 0, 0), vec3(0, 0, 0), vec3(0, 0, 0));
 	ft_strdel(line);
 	get_next_line(fd, line);
-	while ((*line)[0] == '\t')
+	while (*line && (*line)[0] == '\t')
 	{
 		color = parse_color(*line, &ret);
 		trs = parse_transform(*line, &ret, trs);
 		ft_strdel(line);
 		get_next_line(fd, line);
 	}
-	printf("%s\n", obj);
-	printf("-> color: %f %f %f\n", color.x, color.y, color.z);
-	printf("-> pos: %f %f %f\n", trs.pos.x, trs.pos.y, trs.pos.z);
-	printf("-> rot: %f %f %f\n", trs.rot.x, trs.rot.y, trs.rot.z);
-	printf("-> scale: %f %f %f\n", trs.scale.x, trs.scale.y, trs.scale.z);
-	printf("\n");
-	// add_correct_object(s, obj, color, trs);
+	add_correct_object(s, obj, color, trs);
 	return (ret);
 }
 
@@ -195,6 +193,11 @@ int		parse_scene(t_scene *scene, char *name)
 			if (!ft_strchr(line, '#'))
 				ret &= parse_objects(fd, scene, &line);
 		ft_strdel(&line);
+	}
+	if (ret != 0)
+	{
+		printf("Oups ! Scene problem !");
+		exit(0);
 	}
 	return (ret);
 }

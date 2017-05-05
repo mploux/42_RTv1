@@ -6,13 +6,13 @@
 /*   By: mploux <mploux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/22 15:16:41 by mploux            #+#    #+#             */
-/*   Updated: 2017/05/04 20:40:53 by mploux           ###   ########.fr       */
+/*   Updated: 2017/05/05 20:18:22 by mploux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "graphics.h"
 
-t_camera	*new_camera(t_data *data, t_transform trs, float fov)
+t_camera	*new_camera(t_data *data, t_vec3 pos, t_vec3 rot, float fov)
 {
 	t_camera *cam;
 
@@ -22,9 +22,8 @@ t_camera	*new_camera(t_data *data, t_transform trs, float fov)
 	cam->z_far = 1000;
 	cam->fov = fov;
 	cam->aspect = (float)data->win->w / (float)data->win->h;
-	cam->pos = trs.pos;
-	cam->rot = trs.rot;
-	cam->scale = trs.scale;
+	cam->pos = pos;
+	cam->rot = rot;
 	return (cam);
 }
 

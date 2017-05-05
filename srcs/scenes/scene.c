@@ -6,7 +6,7 @@
 /*   By: mploux <mploux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/22 20:35:21 by mploux            #+#    #+#             */
-/*   Updated: 2017/05/05 19:28:30 by mploux           ###   ########.fr       */
+/*   Updated: 2017/05/05 20:22:41 by mploux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,18 @@
 t_scene		*new_scene(t_data *data, char *scene_path)
 {
 	t_scene		*scene;
-	t_transform cam_trs;
 
 	if (!(scene = (t_scene *)ft_memalloc(sizeof(t_scene))))
 		error("malloc error !");
 	(void) scene_path;
-	cam_trs = transform(vec3(0, 0, 0), vec3(0, 0, 0), vec3(0, 0, 0));
 	scene->objects = NULL;
 	scene->lights = NULL;
-	scene->camera = new_camera(data, cam_trs, 70.0);
+	scene->camera = NULL;
+	scene->ambiant_light = vec3(0, 0, 0);
+	scene->data = data;
 	parse_scene(scene, scene_path);
-	manage_scene(scene);
+	if (!scene->camera)
+		scene->camera = new_camera(data, vec3(0, 0, 0), vec3(0, 0, 0), 70.0);
 	return (scene);
 }
 
@@ -41,7 +42,7 @@ void		manage_scene(t_scene *s)
 	// add_object(s, cylindre(0x00ff00, vec3(-2, -1, -5), vec3(0, 0, 90), vec3(0.5, 0.5, 0.5)));
 	// add_object(s, cone(0x0000ff, vec3(-2, -1, -5), vec3(0, 0, 0), vec3(1, 1, 1)));
 
-	add_light(s, light(0xffffff, vec3(0, 0, 0)));
+	// add_light(s, light(0xffffff, vec3(0, 0, 0)));
 	// add_light(s, light(0x00ffff, vec3(-4, 0, -2)));
 	// add_light(s, light(0x0000ff, vec3(4, 0, -2)));
 }

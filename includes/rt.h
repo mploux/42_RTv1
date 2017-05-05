@@ -6,7 +6,7 @@
 /*   By: mploux <mploux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/18 14:10:33 by mploux            #+#    #+#             */
-/*   Updated: 2017/05/05 18:19:45 by mploux           ###   ########.fr       */
+/*   Updated: 2017/05/05 20:13:31 by mploux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 
 # include <stdio.h> //////////
 
+typedef struct s_data		t_data;
 typedef struct s_mesh		t_mesh;
 typedef struct s_bitmap		t_bitmap;
 typedef struct s_input		t_input;
@@ -73,7 +74,6 @@ typedef struct	s_camera
 	float		z_far;
 	t_vec3		pos;
 	t_vec3		rot;
-	t_vec3		scale;
 	float		zoom;
 	t_mat4		trs;
 	t_vec3		apos;
@@ -109,6 +109,7 @@ typedef struct	s_object
 
 typedef struct	s_scene
 {
+	t_data		*data;
 	t_camera	*camera;
 	t_vec3		ambiant_light;
 	t_list		*objects;
@@ -155,7 +156,7 @@ int				create_rt(t_data *data, const char *name, int width,
 																	int height);
 void			loop_rt(t_data *data);
 void			exit_rt(t_data *data);
-t_camera		*new_camera(t_data *data, t_transform trs, float fov);
+t_camera		*new_camera(t_data *data, t_vec3 pos, t_vec3 rot, float fov);
 t_object		object(t_transform trs, int type, t_hit (*intersect)
 													(t_object, t_ray));
 t_ray			nray(t_vec3 pos, t_vec3 dir);
@@ -167,6 +168,5 @@ int				parse_scene(t_scene *scene, char *name);
 void			add_object(t_scene *scene, t_object obj);
 void			add_light(t_scene *scene, t_light light);
 void			draw_scene(t_data *data, t_ray ray, t_vec2 pix);
-void			load_scene(t_scene *scene, char *file);
 
 #endif

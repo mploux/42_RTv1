@@ -2,3 +2,4 @@
 *.a
 bin/
 deps/SDL2-2.0.5/
+deps/libft/bin/

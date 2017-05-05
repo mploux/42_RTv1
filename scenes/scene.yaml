@@ -1,10 +1,10 @@
-# camera:
-# 	pos: 0 0 -5
-# 	rot: 0 0 0
-# 	fov: 70
-#
-# ambiant_light:
-# 	color: 255 255 255
+camera:
+	pos: -5 0 5
+	rot: 0 -45 0
+	fov: 70
+
+ambiant_light:
+	color: 255 255 255
 
 plane:
 	dir: 0 -1 0
@@ -30,5 +30,5 @@ cone:
 	color: 255 0 0
 
 light:
-	pos: -4 0 0
+pos: -4 2 0
 	color: 255 255 255
