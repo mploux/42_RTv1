@@ -1,5 +1,4 @@
 *.o
 *.a
 bin/
-deps/
-
+deps/SDL2-2.0.5/

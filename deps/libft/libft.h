@@ -6,7 +6,7 @@
 /*   By: mploux <mploux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/07 17:37:53 by mploux            #+#    #+#             */
-/*   Updated: 2016/12/30 20:54:28 by mploux           ###   ########.fr       */
+/*   Updated: 2017/05/05 18:07:55 by mploux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,5 +126,6 @@ void			ft_mapadd(t_map **map, t_map *new);
 void			ft_mapclear(t_map **map);
 void			*ft_mapget(t_map *map, char *key);
 void			*ft_mapget_key(t_map *map, void *data);
+void			ft_tabclear(char ***tab);
 
 #endif

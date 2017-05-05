@@ -6,7 +6,7 @@
 /*   By: mploux <mploux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/18 14:10:33 by mploux            #+#    #+#             */
-/*   Updated: 2017/05/04 21:00:47 by mploux           ###   ########.fr       */
+/*   Updated: 2017/05/05 18:19:45 by mploux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,12 @@ typedef struct s_input		t_input;
 
 # define P_OK				0
 # define P_I_OBJECT_NAME	(1 << 1)
+# define P_I_OBJECT_COLOR	(1 << 2)
+# define P_I_OBJECT_POS		(1 << 3)
+# define P_I_OBJECT_ROT		(1 << 4)
+# define P_I_OBJECT_SCALE	(1 << 5)
+# define P_I_OBJECT_DIR		(1 << 6)
+# define P_I_OBJECT_DIST	(1 << 7)
 
 typedef struct	s_win
 {

@@ -1,23 +1,33 @@
-camera:
-	pos: 0 0 -5
-	rot: 0 0 0
-	fov: 70
+# camera:
+# 	pos: 0 0 -5
+# 	rot: 0 0 0
+# 	fov: 70
+#
+# ambiant_light:
+# 	color: 255 255 255
 
 plane:
-	rot: 0 -1 0
+	dir: 0 -1 0
 	dist: 2
-	color: 255 0 255
+	color: 255 235 255
 
 sphere:
-	pos: 0 0 -3
-	radius: 1
-	color: 0 255 255
+	pos: 0 0 -5
+	rot: 0 1 0
+	scale: 1 1 1
+	color: 0 0 255
 
 cylindre:
-	pos: -2 0 -3
+	pos: -2 0 -5
 	rot: 0 1 0
-	radius: 1
-	color: 255 255 255
+	scale: 1 1 1
+	color: 0 255 0
+
+cone:
+	pos: 2 0 -5
+	rot: 0 0 45
+	scale: 1 2 1
+	color: 255 0 0
 
 light:
 	pos: -4 0 0
