@@ -6,7 +6,7 @@
 #    By: mploux <mploux@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/10 06:04:58 by mploux            #+#    #+#              #
-#    Updated: 2017/05/04 21:00:14 by mploux           ###   ########.fr        #
+#    Updated: 2017/05/06 19:30:43 by mploux           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,6 +61,12 @@ objects/sphere.c\
 scenes/scene.c\
 scenes/scene_renderer.c\
 scenes/parser/scene_parser.c\
+scenes/parser/parse_objects.c\
+scenes/parser/parse_position.c\
+scenes/parser/parse_rotation.c\
+scenes/parser/parse_scale.c\
+scenes/parser/parse_transform.c\
+scenes/parser/parse_color.c\
 quadratics/intersect.c\
 quadratics/normal.c\
 quadratics/rotate_x.c\

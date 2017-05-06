@@ -6,7 +6,7 @@
 /*   By: mploux <mploux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/18 14:10:33 by mploux            #+#    #+#             */
-/*   Updated: 2017/05/05 20:13:31 by mploux           ###   ########.fr       */
+/*   Updated: 2017/05/06 19:22:29 by mploux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,28 @@
 
 # include <stdio.h> //////////
 
+typedef struct s_error		t_error;
 typedef struct s_data		t_data;
 typedef struct s_mesh		t_mesh;
 typedef struct s_bitmap		t_bitmap;
 typedef struct s_input		t_input;
 
-# define P_OK				0
-# define P_I_OBJECT_NAME	(1 << 1)
-# define P_I_OBJECT_COLOR	(1 << 2)
-# define P_I_OBJECT_POS		(1 << 3)
-# define P_I_OBJECT_ROT		(1 << 4)
-# define P_I_OBJECT_SCALE	(1 << 5)
-# define P_I_OBJECT_DIR		(1 << 6)
-# define P_I_OBJECT_DIST	(1 << 7)
+# define P_MAX				32
+# define P_OK				(t_error){0, "No error"}
+# define P_I_OBJECT_NAME	(t_error){1, "Invalide object name"}
+# define P_I_OBJECT_COLOR	(t_error){2, "Invalide object color"}
+# define P_I_OBJECT_POS		(t_error){3, "Invalide object position"}
+# define P_I_OBJECT_ROT		(t_error){4, "Invalide object rotation"}
+# define P_I_OBJECT_SCALE	(t_error){5, "Invalide object scale"}
+# define P_I_OBJECT_DIR		(t_error){6, "Invalide object direction"}
+# define P_I_OBJECT_DIST	(t_error){7, "Invalide object distance"}
+# define P_I_OBJECT_PARAM	(t_error){8, "Invalide object param"}
+
+struct			s_error
+{
+	int			error_id;
+	char		*error;
+};
 
 typedef struct	s_win
 {
@@ -123,6 +132,7 @@ typedef struct	s_data
 	t_win		*win;
 	t_bitmap	*framebuffer;
 	t_scene		*scene;
+	t_error		errors[P_MAX];
 }				t_data;
 
 t_object		sphere(int color, t_vec3 pos, t_vec3 rot, t_vec3 scale);
@@ -168,5 +178,7 @@ int				parse_scene(t_scene *scene, char *name);
 void			add_object(t_scene *scene, t_object obj);
 void			add_light(t_scene *scene, t_light light);
 void			draw_scene(t_data *data, t_ray ray, t_vec2 pix);
+void			init_errors(t_data *data);
+int				get_error(t_error error);
 
 #endif
