@@ -6,7 +6,7 @@
 /*   By: mploux <mploux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/18 14:10:33 by mploux            #+#    #+#             */
-/*   Updated: 2017/05/06 19:22:29 by mploux           ###   ########.fr       */
+/*   Updated: 2017/05/09 21:26:27 by mploux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,11 @@
 
 # include <SDL.h>
 # include <stdlib.h>
+# include <unistd.h>
 # include <fcntl.h>
-# include <string.h>
 # include "libft.h"
 # include "maths.h"
 # include "graphics.h"
-
-# include <stdio.h> //////////
 
 typedef struct s_error		t_error;
 typedef struct s_data		t_data;
@@ -29,7 +27,7 @@ typedef struct s_mesh		t_mesh;
 typedef struct s_bitmap		t_bitmap;
 typedef struct s_input		t_input;
 
-# define P_MAX				32
+# define P_MAX				(int)(sizeof(int) * 8)
 # define P_OK				(t_error){0, "No error"}
 # define P_I_OBJECT_NAME	(t_error){1, "Invalide object name"}
 # define P_I_OBJECT_COLOR	(t_error){2, "Invalide object color"}
@@ -39,6 +37,7 @@ typedef struct s_input		t_input;
 # define P_I_OBJECT_DIR		(t_error){6, "Invalide object direction"}
 # define P_I_OBJECT_DIST	(t_error){7, "Invalide object distance"}
 # define P_I_OBJECT_PARAM	(t_error){8, "Invalide object param"}
+# define P_I_SCENE_FILE		(t_error){9, "Invalide scene file"}
 
 struct			s_error
 {
@@ -57,6 +56,7 @@ typedef struct	s_light
 {
 	t_vec3		pos;
 	t_vec3		color;
+	float		intensity;
 }				t_light;
 
 typedef struct	s_ray
@@ -144,7 +144,7 @@ t_hit			intersect_cylindre(t_object obj, t_ray ray);
 t_object		cone(int color, t_vec3 pos, t_vec3 rot, t_vec3 angle);
 t_hit			intersect_cone(t_object obj, t_ray ray);
 
-t_light			light(int color, t_vec3 pos);
+t_light			light(int color, t_vec3 pos, float intensity);
 t_vec3			calc_light(t_data *data, t_light light, t_hit *hit);
 t_vec3			calc_lights(t_data *data, t_hit *hit);
 

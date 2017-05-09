@@ -6,18 +6,19 @@
 /*   By: mploux <mploux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/18 14:07:59 by mploux            #+#    #+#             */
-/*   Updated: 2017/05/06 17:28:32 by mploux           ###   ########.fr       */
+/*   Updated: 2017/05/09 21:28:38 by mploux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-t_light	light(int color, t_vec3 pos)
+t_light	light(int color, t_vec3 pos, float intensity)
 {
 	t_light		light;
 
 	light.pos = pos;
 	light.color = vec3_mul_d(color_to_vec3(color), 1.0 / 255.0);
+	light.intensity = intensity;
 	return (light);
 }
 
@@ -49,6 +50,7 @@ t_vec3	calc_specular(t_data *data, float light_int, t_light light, t_hit *hit)
 	light_reflection = vec3_reflect(vec3_mul_d(light_dir, -1), hit->normal);
 	cam_dir = vec3_normalize(vec3_sub(data->scene->camera->pos, hit->pos));
 	intensity = pow(clamp(vec3_dot(cam_dir, light_reflection), 0, 1), 10);
+	intensity *= light.intensity;
 	result = vec3_mul_d(light.color, intensity * 255 * light_int);
 	result = vec3_add(hit->specular, result);
 	return (result);
@@ -69,7 +71,7 @@ t_vec3	calc_light(t_data *data, t_light light, t_hit *hit)
 	light_dist = vec3_mag(light_diff);
 	hit->specular = calc_specular(data, light_intensity, light, hit);
 	light_intensity *= 1.0 / (light_dist * 0.5 + 0.5);
-	light_color = vec3_mul_d(light.color, light_intensity);
+	light_color = vec3_mul_d(light.color, light_intensity * light.intensity);
 	return (light_color);
 }
 

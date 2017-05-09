@@ -6,11 +6,12 @@
 /*   By: mploux <mploux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 18:00:35 by mploux            #+#    #+#             */
-/*   Updated: 2017/05/06 19:33:48 by mploux           ###   ########.fr       */
+/*   Updated: 2017/05/09 21:12:25 by mploux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
+#include "parser.h"
 
 int		get_error(t_error error)
 {
@@ -35,6 +36,7 @@ void	init_errors(t_data *data)
 	data->errors[P_I_OBJECT_DIR.error_id] = P_I_OBJECT_DIR;
 	data->errors[P_I_OBJECT_DIST.error_id] = P_I_OBJECT_DIST;
 	data->errors[P_I_OBJECT_PARAM.error_id] = P_I_OBJECT_PARAM;
+	data->errors[P_I_SCENE_FILE.error_id] = P_I_SCENE_FILE;
 }
 
 int		parse_scene_data(t_scene *scene, char *name)
@@ -42,17 +44,23 @@ int		parse_scene_data(t_scene *scene, char *name)
 	int		fd;
 	char	*line;
 	int		ret;
+	int		res;
 
 	ret = get_error(P_OK);
 	line = NULL;
 	fd = open(name, O_RDONLY);
-	while (get_next_line(fd, &line))
+	if (fd < 0)
+		return (get_error(P_I_SCENE_FILE));
+	while ((res = get_next_line(fd, &line)) > 0)
 	{
 		if (line[0] != '\t' && line[0] != '\n' && line[0] != 0)
 			if (!ft_strchr(line, '#'))
 				ret |= parse_objects(fd, scene, &line);
 		ft_strdel(&line);
 	}
+	close(fd);
+	if (res < 0)
+		return (get_error(P_I_SCENE_FILE));
 	return (ret);
 }
 
@@ -68,7 +76,7 @@ int		parse_scene(t_scene *scene, char *name)
 		while (++i < P_MAX)
 			if ((ret & (1 << i)) != 0)
 			{
-				ft_putstr(T_RED"Scene syntax error: ");
+				ft_putstr(T_RED"Scene error: ");
 				ft_putstr(scene->data->errors[i].error);
 				ft_putendl(T_NRM);
 			}

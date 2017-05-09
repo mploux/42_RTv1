@@ -19,7 +19,7 @@ int		add_correct_object(t_scene *s, char *obj, t_vec3 col, t_transform trs)
 	else if (ft_strequ(obj, "cone:"))
 		add_object(s, cone(color, trs.pos, trs.rot, trs.scale));
 	else if (ft_strequ(obj, "light:"))
-		add_light(s, light(color, trs.pos));
+		add_light(s, light(color, trs.pos, trs.scale.x / 100.0));
 	else if (ft_strequ(obj, "ambiant_light:"))
 		s->ambiant_light = col;
 	else if (ft_strequ(obj, "camera:"))

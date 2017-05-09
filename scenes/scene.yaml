@@ -11,15 +11,19 @@ plane:
 	dist: 2
 	color: 255 235 255
 
+plane:
+	dir: 1 0 0
+	dist: 10
+	color: 255 235 255
+
 sphere:
-	pos: 0 -1 -3
-	rot: 0 1 0
+	pos: 1 1 1
 	scale: 1 1 1
-	color: 0 0 255
+	color: 255 0 0
 
 cylindre:
 	pos: -2 0 -5
-	rot: 0 1 0
+	rot: -30 45 0
 	scale: 1 1 1
 	color: 0 255 0
 
@@ -31,8 +35,10 @@ cone:
 
 light:
 	pos: -4 2 0
+	intensity: 100
 	color: 255 255 255
 
 light:
 	pos: 4 -1 0
+	intensity: 100
 	color: 0 255 255

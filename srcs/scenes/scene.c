@@ -6,7 +6,7 @@
 /*   By: mploux <mploux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/22 20:35:21 by mploux            #+#    #+#             */
-/*   Updated: 2017/05/05 20:36:48 by mploux           ###   ########.fr       */
+/*   Updated: 2017/05/06 19:42:03 by mploux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,23 +28,6 @@ t_scene		*new_scene(t_data *data, char *scene_path)
 	if (!scene->camera)
 		scene->camera = new_camera(data, vec3(0, 0, 0), vec3(0, 0, 0), 70.0);
 	return (scene);
-}
-
-void		manage_scene(t_scene *s)
-{
-	// add_object(s, plane(0xffffff, vec3(-1, 0, 0), 5));
-	// add_object(s, plane(0xffffff, vec3(1, 0, 0), 5));
-	// add_object(s, plane(0xffffff, vec3(0, 1, 0), 2));
-	// add_object(s, plane(0xffffff, vec3(0, -1, 0), 2));
-	// add_object(s, plane(0xffffff, vec3(0, 0, -1), 10));
-	//
-	// add_object(s, sphere(0xff0000, vec3(-2, -1, -5), vec3(0, 0, 90), vec3(1, 1, 1)));
-	// add_object(s, cylindre(0x00ff00, vec3(-2, -1, -5), vec3(0, 0, 90), vec3(0.5, 0.5, 0.5)));
-	// add_object(s, cone(0x0000ff, vec3(-2, -1, -5), vec3(0, 0, 0), vec3(1, 1, 1)));
-
-	// add_light(s, light(0xffffff, vec3(0, 0, 0)));
-	// add_light(s, light(0x00ffff, vec3(-4, 0, -2)));
-	// add_light(s, light(0x0000ff, vec3(4, 0, -2)));
 }
 
 void		add_object(t_scene *scene, t_object obj)

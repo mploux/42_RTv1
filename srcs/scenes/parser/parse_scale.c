@@ -1,5 +1,21 @@
 #include "parser.h"
 
+t_vec3		handle_extras(char **toks, int *ret)
+{
+	t_vec3 result;
+
+	result = vec3(0, 0, 0);
+	if (ft_strequ(toks[0], "\tdist:") || ft_strequ(toks[0], "\tfov:") ||
+		ft_strequ(toks[0], "\tintensity:"))
+	{
+		if (toks[1])
+			result = vec3(ft_atoi(toks[1]), 0, 0);
+		else
+			*ret |= get_error(P_I_OBJECT_DIST);
+	}
+	return (result);
+}
+
 t_vec3		parse_scale(char **toks, int *ret)
 {
 	t_vec3 result;
@@ -17,12 +33,15 @@ t_vec3		parse_scale(char **toks, int *ret)
 		else
 			*ret |= get_error(P_I_OBJECT_SCALE);
 	}
-	else if (ft_strequ(toks[0], "\tdist:") || ft_strequ(toks[0], "\tfov:"))
-	{
-		if (toks[1])
-			result = vec3(ft_atoi(toks[1]), 0, 0);
-		else
-			*ret |= get_error(P_I_OBJECT_DIST);
-	}
+	else
+		result = handle_extras(toks, ret);
+	// else if (ft_strequ(toks[0], "\tdist:") || ft_strequ(toks[0], "\tfov:") ||
+	// 	ft_strequ(toks[0], "\tintensity:"))
+	// {
+	// 	if (toks[1])
+	// 		result = vec3(ft_atoi(toks[1]), 0, 0);
+	// 	else
+	// 		*ret |= get_error(P_I_OBJECT_DIST);
+	// }
 	return (result);
 }

@@ -6,7 +6,7 @@
 /*   By: mploux <mploux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/18 14:12:44 by mploux            #+#    #+#             */
-/*   Updated: 2017/05/06 19:33:36 by mploux           ###   ########.fr       */
+/*   Updated: 2017/05/09 20:44:48 by mploux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ int		create_rt(t_data *data, const char *name, int width, int height)
 	new_sdl_display(data, name, width, height);
 	init_errors(data);
 	data->framebuffer = new_bitmap(data, width, height);
-	data->scene = new_scene(data, "scenes/scene.yaml");
 	return (1);
 }
 
