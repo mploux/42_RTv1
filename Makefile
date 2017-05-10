@@ -6,7 +6,7 @@
 #    By: mploux <mploux@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/10 06:04:58 by mploux            #+#    #+#              #
-#    Updated: 2017/05/06 19:30:43 by mploux           ###   ########.fr        #
+#    Updated: 2017/05/10 23:13:36 by mploux           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,8 @@ SDL_INCLUDES = $(SDL_DIR)/include
 LIBFT_DIR = $(DEPS_DIR)/libft
 LIBFT_LIB = $(LIBFT_DIR)/libft.a
 LIBFT_INCLUDES = $(LIBFT_DIR)
+
+SYSTEM = $(shell uname -s)
 
 FILES =\
 error.c\
@@ -83,8 +85,11 @@ OBJS = $(addprefix $(BIN_DIR)/,$(FILES:.c=.o))
 INCLUDES = -I $(INCLUDES_DIR) -I $(LIBFT_INCLUDES)/ -I $(SDL_INCLUDES)/
 LIBS = -L $(LIBFT_DIR) -L $(SDL_LIB_DIR)
 
-SDL_FLAGS = -lSDL2 -lXext -lX11 -lft -lm -ldl
-# SDL_FLAGS = -lSDL2 -framework Cocoa -framework CoreAudio -framework AudioToolbox -framework ForceFeedback -framework CoreVideo -framework Carbon -framework IOKit -liconv
+ifeq (SYSTEM, Darwin)
+	SDL_FLAGS = -lSDL2 -framework Cocoa -framework CoreAudio -framework AudioToolbox -framework ForceFeedback -framework CoreVideo -framework Carbon -framework IOKit -liconv
+else
+	SDL_FLAGS = -lSDL2 -lXext -lX11 -lft -lm -ldl
+endif
 
 FLAGS = -Wall -Wextra -O2 -march=native -Ofast -pedantic
 

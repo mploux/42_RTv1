@@ -35,13 +35,5 @@ t_vec3		parse_scale(char **toks, int *ret)
 	}
 	else
 		result = handle_extras(toks, ret);
-	// else if (ft_strequ(toks[0], "\tdist:") || ft_strequ(toks[0], "\tfov:") ||
-	// 	ft_strequ(toks[0], "\tintensity:"))
-	// {
-	// 	if (toks[1])
-	// 		result = vec3(ft_atoi(toks[1]), 0, 0);
-	// 	else
-	// 		*ret |= get_error(P_I_OBJECT_DIST);
-	// }
 	return (result);
 }
