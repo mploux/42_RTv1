@@ -52,5 +52,6 @@ int		parse_objects(int fd, t_scene *s, char **line)
 		get_next_line(fd, line);
 	}
 	ret |= add_correct_object(s, obj, color, trs);
+	ft_strdel(&obj);
 	return (ret);
 }
