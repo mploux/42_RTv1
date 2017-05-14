@@ -1,0 +1,27 @@
+camera:
+	pos: 0 0 5
+	rot: 0 0 0
+	fov: 70
+
+ambiant_light:
+	color: 20 20 20
+
+plane:
+	dir: 0 -1 0
+	dist: 2
+	color: 255 235 255
+
+sphere:
+	pos: 0 0 0
+	scale: 1 1 1
+	color: 255 0 0
+
+light:
+	pos: -4 2 5
+	intensity: 100
+	color: 255 255 255
+
+light:
+	pos: 4 -1 0
+	intensity: 100
+	color: 0 255 255
