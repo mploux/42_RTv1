@@ -1,12 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parser.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mploux <mploux@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/14 18:57:18 by mploux            #+#    #+#             */
+/*   Updated: 2017/05/14 18:57:22 by mploux           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PARSER_H
 # define PARSER_H
 
 # include "rt.h"
-
-/*
- *	add_correct_object : This is not good.
- *	TODO: Implement a better way than if, else if, else
- */
 
 int			add_correct_object(t_scene *s, char *obj, t_vec3 col,
 															t_transform trs);

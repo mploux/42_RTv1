@@ -1,9 +1,16 @@
-#include "parser.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_objects.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mploux <mploux@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/14 18:53:14 by mploux            #+#    #+#             */
+/*   Updated: 2017/05/14 18:54:05 by mploux           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-/*
- *	This is not good.
- *	TODO: Implement a better way than if, else if, else
- */
+#include "parser.h"
 
 int		add_correct_object(t_scene *s, char *obj, t_vec3 col, t_transform trs)
 {

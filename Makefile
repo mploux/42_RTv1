@@ -6,7 +6,7 @@
 #    By: mploux <mploux@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/10 06:04:58 by mploux            #+#    #+#              #
-#    Updated: 2017/05/14 17:26:05 by mploux           ###   ########.fr        #
+#    Updated: 2017/05/14 19:29:18 by mploux           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -95,7 +95,7 @@ SDL_FLAGS = -lSDL2 -framework Cocoa -framework CoreAudio\
 
 FLAGS = -Wall -Wextra -O2 -march=native -Ofast -pedantic
 
-.PHONY: all test clean clean-libs fclean re
+.PHONY: all test clean clean-libs fclean re re-libs
 
 $(NAME): $(SDL_LIB) $(LIBFT_LIB) $(BIN_DIR) $(OBJS)
 	@printf "\r$(YELLOW)Building RTv1...$(NO_COLOR)";
@@ -106,25 +106,26 @@ $(NAME): $(SDL_LIB) $(LIBFT_LIB) $(BIN_DIR) $(OBJS)
 all: $(NAME)
 
 $(SDL_LIB):
-	@printf "\r$(YELLOW)Building SDL2...$(NO_COLOR)                ";
+	@printf "\r$(YELLOW)  Building SDL2...$(NO_COLOR)                   \r";
 	@$(shell tar -xzf $(SDL_DIR).tar.gz -C $(DEPS_DIR))
-	@printf "\r$(YELLOW)Building SDL2: Configuring...$(NO_COLOR)   ";
+	@printf "\r$(YELLOW)  Building SDL2: Configuring...$(NO_COLOR)      \r";
 	@cd $(SDL_DIR) && ./configure > /dev/null
-	@printf "\r$(YELLOW)Building SDL2: Making...$(NO_COLOR)        ";
+	@printf "\r$(YELLOW)  Building SDL2: Making...$(NO_COLOR)           \r";
 	@make -C $(SDL_DIR) > /dev/null 2> /dev/null
-	@printf "\r$(YELLOW)Building SDL2: Removing dylib...$(NO_COLOR)";
+	@printf "\r$(YELLOW)  Building SDL2: Removing dylib...$(NO_COLOR)   \r";
 	@rm -rf $(SDL_LIB_DIR)/libSDL2-2.0.0.dylib
-	@printf "\r$(GREEN)Building SDL2: DONE !$(NO_COLOR)            \n";
+	@printf "\r$(GREEN)Building SDL2: DONE !$(NO_COLOR)                 \n";
 
 $(LIBFT_LIB):
-	@printf "\r$(YELLOW)Building libft...$(NO_COLOR)      ";
+	@printf "\r$(YELLOW)  Building libft...                  $(NO_COLOR)\r";
 	@make -C $(LIBFT_DIR) > /dev/null
-	@printf "\r$(GREEN)Building libft: DONE !$(NO_COLOR)\n";
+	@printf "\r$(GREEN)Building libft: DONE !                $(NO_COLOR)\n";
 
 $(BIN_DIR):
 	@mkdir -p $(dir $(OBJS))
 
 $(BIN_DIR)/%.o: $(SRCS_DIR)/%.c
+	@printf "\r$(YELLOW)  Building: $@                       $(NO_COLOR)\r";
 	@$(CC) $(FLAGS) -MMD -o $@ -c $< $(INCLUDES)
 
 test: all
@@ -141,3 +142,5 @@ fclean: clean
 	@rm -rf $(NAME)
 
 re: fclean all
+
+re-libs: clean-libs re

@@ -6,7 +6,7 @@
 /*   By: mploux <mploux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/18 16:57:52 by mploux            #+#    #+#             */
-/*   Updated: 2017/04/11 13:29:47 by mploux           ###   ########.fr       */
+/*   Updated: 2017/05/14 18:57:07 by mploux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 typedef struct s_data		t_data;
 
-typedef struct		s_bitmap
+typedef struct	s_bitmap
 {
 	t_data			*data;
 	SDL_Renderer	*sdl_renderer;
@@ -26,7 +26,7 @@ typedef struct		s_bitmap
 	int				width;
 	int				height;
 	int				*pixels;
-}					t_bitmap;
+}				t_bitmap;
 
 void			draw_screen(t_data *data);
 void			draw_pix(t_data *data, float x, float y, int color);

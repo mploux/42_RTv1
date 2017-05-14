@@ -6,7 +6,7 @@
 /*   By: mploux <mploux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/29 19:57:27 by mploux            #+#    #+#             */
-/*   Updated: 2016/12/12 14:31:36 by mploux           ###   ########.fr       */
+/*   Updated: 2017/05/14 18:52:18 by mploux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ t_mat4		mat4_ortho(t_vec2 w, t_vec2 h, t_vec2 d)
 
 t_mat4		mat4_persp(float fov, float aspect, float near, float far)
 {
-	t_mat4 result;
-	float tfov;
+	t_mat4	result;
+	float	tfov;
 
 	tfov = tan(DTR(fov) / 2.0);
 	result = mat4_identity();

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_color.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mploux <mploux@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/14 18:53:10 by mploux            #+#    #+#             */
+/*   Updated: 2017/05/14 18:53:51 by mploux           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "parser.h"
 
 t_vec3		parse_color(char *line, int *ret, t_vec3 color)
@@ -6,7 +18,7 @@ t_vec3		parse_color(char *line, int *ret, t_vec3 color)
 	char	**toks;
 
 	result = vec3(255, 0, 255);
-	if (color.x != result.x || color.y != result.y ||  color.z != result.z)
+	if (color.x != result.x || color.y != result.y || color.z != result.z)
 		return (color);
 	toks = ft_strsplit(line, ' ');
 	if (!toks || !toks[0])

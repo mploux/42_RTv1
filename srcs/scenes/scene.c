@@ -6,7 +6,7 @@
 /*   By: mploux <mploux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/22 20:35:21 by mploux            #+#    #+#             */
-/*   Updated: 2017/05/06 19:42:03 by mploux           ###   ########.fr       */
+/*   Updated: 2017/05/14 18:54:47 by mploux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ t_scene		*new_scene(t_data *data, char *scene_path)
 
 	if (!(scene = (t_scene *)ft_memalloc(sizeof(t_scene))))
 		error("malloc error !");
-	(void) scene_path;
 	scene->objects = NULL;
 	scene->lights = NULL;
 	scene->camera = NULL;

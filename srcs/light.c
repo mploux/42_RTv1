@@ -6,7 +6,7 @@
 /*   By: mploux <mploux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/18 14:07:59 by mploux            #+#    #+#             */
-/*   Updated: 2017/05/09 21:28:38 by mploux           ###   ########.fr       */
+/*   Updated: 2017/05/14 18:52:54 by mploux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ t_vec3	calc_lights(t_data *data, t_hit *hit)
 	t_list	*lights;
 	t_vec3	light_color;
 	t_light	light;
+
 	lights = data->scene->lights;
 	light_color = vec3_mul_d(data->scene->ambiant_light, 1.0 / 255.0);
 	while (lights)

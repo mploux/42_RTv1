@@ -6,7 +6,7 @@
 /*   By: mploux <mploux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/18 14:10:33 by mploux            #+#    #+#             */
-/*   Updated: 2017/05/09 21:26:27 by mploux           ###   ########.fr       */
+/*   Updated: 2017/05/14 19:17:39 by mploux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,19 @@
 # include "maths.h"
 # include "graphics.h"
 
-typedef struct s_error		t_error;
 typedef struct s_data		t_data;
 typedef struct s_mesh		t_mesh;
 typedef struct s_bitmap		t_bitmap;
 typedef struct s_input		t_input;
+typedef struct s_win		t_win;
+typedef struct s_light		t_light;
+typedef struct s_ray		t_ray;
+typedef struct s_hit		t_hit;
+typedef struct s_camera		t_camera;
+typedef struct s_quadratic	t_quadratic;
+typedef struct s_object		t_object;
+typedef struct s_scene		t_scene;
+typedef struct s_error		t_error;
 
 # define P_MAX				(int)(sizeof(int) * 8)
 # define P_OK				(t_error){0, "No error"}
@@ -45,36 +53,36 @@ struct			s_error
 	char		*error;
 };
 
-typedef struct	s_win
+struct			s_win
 {
 	int			w;
 	int			h;
 	char		*name;
-}				t_win;
+};
 
-typedef struct	s_light
+struct			s_light
 {
 	t_vec3		pos;
 	t_vec3		color;
 	float		intensity;
-}				t_light;
+};
 
-typedef struct	s_ray
+struct			s_ray
 {
 	t_vec3		pos;
 	t_vec3		dir;
-}				t_ray;
+};
 
-typedef struct	s_hit
+struct			s_hit
 {
 	void		*obj;
 	t_vec3		pos;
 	t_vec3		normal;
 	float		dist;
 	t_vec3		specular;
-}				t_hit;
+};
 
-typedef struct	s_camera
+struct			s_camera
 {
 	t_mat4		proj;
 	float		fov;
@@ -89,9 +97,9 @@ typedef struct	s_camera
 	t_vec3		arot;
 	t_vec3		ascale;
 	int			azoom;
-}				t_camera;
+};
 
-typedef struct	s_quadratic
+struct			s_quadratic
 {
 	float		a;
 	float		b;
@@ -103,9 +111,9 @@ typedef struct	s_quadratic
 	float		h;
 	float		i;
 	float		j;
-}				t_quadratic;
+};
 
-typedef struct	s_object
+struct			s_object
 {
 	t_quadratic	quadra;
 	t_vec3		pos;
@@ -114,18 +122,18 @@ typedef struct	s_object
 	t_vec3		color;
 	float		dist;
 	t_hit		(*intersect)(struct s_object, t_ray);
-}				t_object;
+};
 
-typedef struct	s_scene
+struct			s_scene
 {
 	t_data		*data;
 	t_camera	*camera;
 	t_vec3		ambiant_light;
 	t_list		*objects;
 	t_list		*lights;
-}				t_scene;
+};
 
-typedef struct	s_data
+struct			s_data
 {
 	SDL_Window	*sdl_win;
 	SDL_Surface	*sdl_surface;
@@ -133,7 +141,7 @@ typedef struct	s_data
 	t_bitmap	*framebuffer;
 	t_scene		*scene;
 	t_error		errors[P_MAX];
-}				t_data;
+};
 
 t_object		sphere(int color, t_vec3 pos, t_vec3 rot, t_vec3 scale);
 t_hit			intersect_sphere(t_object obj, t_ray ray);
@@ -150,7 +158,7 @@ t_vec3			calc_lights(t_data *data, t_hit *hit);
 
 t_hit			quadratic_object_intersect(t_object *object, t_ray *ray);
 float			quadratic_intersect(t_quadratic *quadra, t_vec3 *dir,
-	 															t_vec3 *eye);
+																t_vec3 *eye);
 void			quadratic_rotate_x(float angle, t_quadratic *quadra);
 void			quadratic_rotate_y(float angle, t_quadratic *quadra);
 void			quadratic_rotate_z(float angle, t_quadratic *quadra);

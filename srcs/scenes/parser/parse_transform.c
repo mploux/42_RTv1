@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_transform.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mploux <mploux@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/14 18:53:25 by mploux            #+#    #+#             */
+/*   Updated: 2017/05/14 18:54:19 by mploux           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "parser.h"
 
-t_transform parse_transform(char *line, int *ret, t_transform trs)
+t_transform		parse_transform(char *line, int *ret, t_transform trs)
 {
 	t_transform	result;
 	char		**toks;
