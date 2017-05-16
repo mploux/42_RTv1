@@ -6,7 +6,7 @@
 #    By: mploux <mploux@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/10 06:04:58 by mploux            #+#    #+#              #
-#    Updated: 2017/05/14 19:29:18 by mploux           ###   ########.fr        #
+#    Updated: 2017/05/16 13:53:31 by mploux           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -93,7 +93,7 @@ SDL_FLAGS = -lSDL2 -framework Cocoa -framework CoreAudio\
 # 	SDL_FLAGS = -lSDL2 -lXext -lX11 -lft -lm -ldl
 # endif
 
-FLAGS = -Wall -Wextra -O2 -march=native -Ofast -pedantic
+FLAGS = -Wall -Wextra -Werror -O2 -march=native -Ofast -pedantic
 
 .PHONY: all test clean clean-libs fclean re re-libs
 

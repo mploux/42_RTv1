@@ -11,9 +11,10 @@ plane:
 	dist: 2
 	color: 255 235 255
 
-sphere:
+cone:
 	pos: 0 0 0
-	scale: 1 1 1
+	rot: 0 0 -20
+	scale: 1 2 1
 	color: 255 0 0
 
 light:

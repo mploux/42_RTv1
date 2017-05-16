@@ -6,7 +6,7 @@
 /*   By: mploux <mploux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/14 18:53:14 by mploux            #+#    #+#             */
-/*   Updated: 2017/05/14 18:54:05 by mploux           ###   ########.fr       */
+/*   Updated: 2017/05/16 14:01:57 by mploux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,34 @@ int		add_correct_object(t_scene *s, char *obj, t_vec3 col, t_transform trs)
 	return (get_error(P_OK));
 }
 
+int		verify_object(char *line)
+{
+	int		ret;
+	char	**toks;
+
+	ret = 0;
+	if (line[0] != '\t')
+		return (get_error(P_I_OBJECT_PARAM));
+	toks = ft_strsplit(line, ':');
+	if (toks[2] || !toks[1])
+		error("INVALID SCENE !");
+	if (toks[0][0] == '\t')
+	{
+		if (!ft_strequ(toks[0], "\tpos") && !ft_strequ(toks[0], "\trot") &&
+			!ft_strequ(toks[0], "\tscale") && !ft_strequ(toks[0], "\tfov") &&
+			!ft_strequ(toks[0], "\tdist") &&
+			!ft_strequ(toks[0], "\tintensity") &&
+			!ft_strequ(toks[0], "\tdir") && !ft_strequ(toks[0], "\tcolor"))
+			ret |= get_error(P_I_OBJECT_PARAM);
+	}
+	else if (ft_strchr(line, '#') || line[0] == '\n' || line[0] == 0)
+		ret |= 0;
+	else
+		ret |= get_error(P_I_OBJECT_PARAM);
+	ft_tabclear(&toks);
+	return (ret);
+}
+
 int		parse_objects(int fd, t_scene *s, char **line)
 {
 	int			ret;
@@ -49,15 +77,16 @@ int		parse_objects(int fd, t_scene *s, char **line)
 	trs = transform(vec3(0, 0, 0), vec3(0, 0, 0), vec3(0, 0, 0));
 	ft_strdel(line);
 	get_next_line(fd, line);
-	if ((*line)[0] != '\t')
-		return (get_error(P_I_OBJECT_PARAM));
 	while (*line && (*line)[0] == '\t')
 	{
+		if ((ret = verify_object(*line)) != 0)
+			break ;
 		color = parse_color(*line, &ret, color);
 		trs = parse_transform(*line, &ret, trs);
 		ft_strdel(line);
 		get_next_line(fd, line);
 	}
+	ft_strdel(line);
 	ret |= add_correct_object(s, obj, color, trs);
 	ft_strdel(&obj);
 	return (ret);
